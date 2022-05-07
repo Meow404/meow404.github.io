@@ -269,6 +269,7 @@ ul#nav li.current a { color: #F06000; }
    font: 18px/24px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 1px;
+   line-height: 200%;
 }
 #resume h1 span {
    border-bottom: 3px solid #11ABB0;
