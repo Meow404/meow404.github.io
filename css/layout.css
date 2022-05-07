@@ -202,6 +202,11 @@ ul#nav li.current a { color: #F06000; }
    overflow: hidden;
 }
 
+#about span,
+#about a {
+   color: #fff;
+}
+
 #about a, #about a:visited  { color: #fff; }
 #about a:hover, #about a:focus { color: #11ABB0; }
 
@@ -212,13 +217,16 @@ ul#nav li.current a { color: #F06000; }
 }
 #about p {
    line-height: 30px;
+   justify-content: center;
+   text-align: justify;
+   text-justify: inter-word;
    color: #7A7A7A;
 }
 #about .profile-pic {
    position: relative;
    width: 120px;
-   height: 120px;
-   border-radius: 100%;
+   height: 150px;
+   border-radius: 50%;
 }
 #about .contact-details { width: 41.66667%; }
 #about .download {
