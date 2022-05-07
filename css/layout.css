@@ -202,7 +202,10 @@ ul#nav li.current a { color: #F06000; }
    overflow: hidden;
 }
 
-#about span,
+#about span{
+   color: #fff;
+}
+
 #about a {
    color: #fff;
 }
@@ -297,6 +300,31 @@ ul#nav li.current a { color: #F06000; }
    font: 15px/24px 'opensans-regular', sans-serif;
    margin-top: 6px;
 }
+
+#resume p {
+   line-height: 30px;
+   justify-content: center;
+   text-align: justify;
+   text-justify: inter-word;
+}
+
+#resume div.scrollmenu {
+   background-color: #333;
+   overflow: auto;
+   white-space: nowrap;
+ }
+ 
+ #resume div.scrollmenu a {
+   display: inline-block;
+   color: white;
+   text-align: center;
+   padding: 14px;
+   text-decoration: none;
+ }
+ 
+ #resume div.scrollmenu a:hover {
+   background-color: #777;
+ }
 
 /*----------------------------------------------*/
 /*	Skill Bars
