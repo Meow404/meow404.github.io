@@ -687,6 +687,8 @@ ul#nav li.current a { color: #F06000; }
 #call-to-action p {
    color: #636363;
    font-size: 17px;
+   text-align: justify;
+   text-justify: inter-word;
 }
 /*#
 call-to-action .button {
