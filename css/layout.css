@@ -586,6 +586,8 @@ ul#nav li.current a { color: #F06000; }
 .popup-modal .item-wrap img {
    vertical-align: bottom;
    object-fit: fill;
+   width: 100%;
+   padding: 12px 12px 12px 12px;
 }
 
 .popup-modal video {
@@ -593,7 +595,7 @@ ul#nav li.current a { color: #F06000; }
    /* object-fit: fill; */
    /* width:fit-content; */
    width: 100%;
-   padding: 12px 36px 18px 36px;
+   padding: 12px 12px 12px 12px;
 }
 
 .popup-modal .description-box { padding: 12px 36px 18px 36px; }
