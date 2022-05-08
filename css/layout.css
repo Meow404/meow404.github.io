@@ -585,7 +585,7 @@ ul#nav li.current a { color: #F06000; }
 
 .popup-modal .item-wrap img {
    vertical-align: bottom;
-   object-fit: fill;
+   /* object-fit: fill; */
    width: 100%;
    padding: 12px 12px 12px 12px;
 }
