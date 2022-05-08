@@ -598,6 +598,8 @@ ul#nav li.current a { color: #F06000; }
 	font: 14px/24px 'opensans-regular', sans-serif;
    color: #A1A1A1;
    margin-bottom: 12px;
+   text-align: justify;
+   text-justify: inter-word;
 }
 .popup-modal .description-box .categories {
    font: 11px/21px 'opensans-light', sans-serif;
