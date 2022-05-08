@@ -592,6 +592,7 @@ ul#nav li.current a { color: #F06000; }
    vertical-align: bottom;
    /* object-fit: fill; */
    /* width:fit-content; */
+   width: 100%;
    padding: 12px 36px 18px 36px;
 }
 
