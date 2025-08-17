@@ -388,86 +388,85 @@ ul#nav li.current a { color: #F06000; }
 }
 
 .embeddedc {
-  	width: 70%;
+  	width: 50%;
   	-moz-animation: embeddedc 2s ease;
   	-webkit-animation: embeddedc 2s ease;
 }
 .python {
-  	width: 60%;
+  	width: 80%;
   	-moz-animation: python 2s ease;
   	-webkit-animation: python 2s ease;
 }
 .cpp {
-  	width: 65%;
+  	width: 85%;
   	-moz-animation: cpp 2s ease;
   	-webkit-animation: cpp 2s ease;
 }
-.assembly {
-  	width: 50%;
-  	-moz-animation: assembly 2s ease;
-  	-webkit-animation: assembly 2s ease;
+.cicd {
+  	width: 70%;
+  	-moz-animation: cicd 2s ease;
+  	-webkit-animation: cicd 2s ease;
 }
-.matlab {
-  	width: 45%;
-  	-moz-animation: matlab 2s ease;
-  	-webkit-animation: matlab 2s ease;
+.github {
+  	width: 65%;
+  	-moz-animation: github 2s ease;
+  	-webkit-animation: github 2s ease;
 }
 .ros {
-  	width: 30%;
+  	width: 70%;
   	-moz-animation: ros 2s ease;
   	-webkit-animation: ros 2s ease;
 }
 
 @-moz-keyframes embeddedc {
   0%   { width: 0px;  }
-  100% { width: 70%;  }
+  100% { width: 50%;  }
 }
 @-moz-keyframes python {
   0%   { width: 0px;  }
-  100% { width: 60%;  }
+  100% { width: 80%;  }
 }
 @-moz-keyframes cpp {
   0%   { width: 0px;  }
+  100% { width: 85%;  }
+}
+@-moz-keyframes cicd {
+  0%   { width: 0px;  }
+  100% { width: 70%;  }
+}
+@-moz-keyframes github {
+  0%   { width: 0px;  }
   100% { width: 65%;  }
-}
-@-moz-keyframes assembly {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-moz-keyframes matlab {
-  0%   { width: 0px;  }
-  100% { width: 45%;  }
 }
 @-moz-keyframes ros {
   0%   { width: 0px;  }
-  100% { width: 30%;  }
+  100% { width: 70%;  }
 }
 
 @-webkit-keyframes embeddedc {
   0%   { width: 0px;  }
-  100% { width: 70%;  }
+  100% { width: 50%;  }
 }
 @-webkit-keyframes python {
   0%   { width: 0px;  }
-  100% { width: 60%;  }
+  100% { width: 80%;  }
 }
 @-webkit-keyframes cpp {
   0%   { width: 0px;  }
+  100% { width: 85%;  }
+}
+@-webkit-keyframes cicd {
+  0%   { width: 0px;  }
+  100% { width: 70%;  }
+}
+@-webkit-keyframes github {
+  0%   { width: 0px;  }
   100% { width: 65%;  }
-}
-@-webkit-keyframes assembly {
-  0%   { width: 0px;  }
-  100% { width: 50%;  }
-}
-@-webkit-keyframes matlab {
-  0%   { width: 0px;  }
-  100% { width: 45%;  }
 }
 @-webkit-keyframes ros {
   0%   { width: 0px;  }
-  100% { width: 30%;  }
+  100% { width: 70%;  }
 }
-
 /* ------------------------------------------------------------------ */
 /* e. Portfolio Section
 /* ------------------------------------------------------------------ */
