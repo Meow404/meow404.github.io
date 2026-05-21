@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>DAIRLab Open-Source Infrastructure — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+   <style>
+      .repo-grid {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 16px;
+         margin: 28px 0;
+      }
+      .repo-card {
+         background: #141414;
+         border: 1px solid #222;
+         padding: 20px 22px;
+         display: flex;
+         flex-direction: column;
+         gap: 8px;
+      }
+      .repo-card h4 {
+         color: #fff;
+         font: 14px 'opensans-bold', sans-serif;
+         margin: 0;
+      }
+      .repo-card h4 a {
+         color: #fff;
+         text-decoration: none;
+         transition: color 0.2s;
+      }
+      .repo-card h4 a:hover { color: #11ABB0; }
+      .repo-card .repo-tags {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 5px;
+      }
+      .repo-card .repo-tag {
+         background: #1e1e1e;
+         color: #666;
+         padding: 2px 9px;
+         border-radius: 20px;
+         font: 11px 'opensans-regular', sans-serif;
+         border: 1px solid #2a2a2a;
+      }
+      .repo-card p {
+         color: #888;
+         font: 13px/1.55em 'librebaskerville-regular', serif;
+         margin: 0;
+      }
+      .repo-card .repo-link {
+         color: #11ABB0;
+         font: 11px 'opensans-bold', sans-serif;
+         text-decoration: none;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         margin-top: 4px;
+         align-self: flex-start;
+      }
+      .repo-card .repo-link:hover { color: #fff; }
+
+      .featured-repo {
+         border-color: #11ABB0;
+         background: #0f1a1a;
+      }
+      .featured-repo h4 a { color: #11ABB0; }
+
+      @media only screen and (max-width: 680px) {
+         .repo-grid { grid-template-columns: 1fr; }
+      }
+   </style>
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">DAIRLab Open-Source Infrastructure</span>
+   </nav>
+
+   <div style="padding-top:52px; background:#111; padding-bottom:40px; border-bottom:1px solid #1e1e1e; text-align:center;">
+      <div style="max-width:680px; margin:0 auto; padding:40px 24px 0;">
+         <p style="color:#11ABB0; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:3px; margin-bottom:14px;">DAIRLab &mdash; University of Pennsylvania</p>
+         <h2 style="color:#fff; font:34px/1.2em 'opensans-bold',sans-serif; margin-bottom:16px;">Open-Source Robotics Infrastructure</h2>
+         <p style="color:#888; font:16px/1.6em 'librebaskerville-regular',serif;">
+            A collection of robotics drivers, tooling, and infrastructure packages developed and maintained
+            as part of my work at the DAIRLab.
+         </p>
+      </div>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Graduate Research &mdash; DAIRLab, University of Pennsylvania</p>
+      <h1>DAIRLab Open-Source Infrastructure</h1>
+
+      <div class="tags">
+         <span class="tag">C++</span>
+         <span class="tag">Python</span>
+         <span class="tag">Drake</span>
+         <span class="tag">LCM</span>
+         <span class="tag">Docker</span>
+         <span class="tag">Bazel</span>
+         <span class="tag">TCP/IP</span>
+         <span class="tag">Hardware Drivers</span>
+      </div>
+
+      <div class="description">
+         <p>
+            Research at the DAIRLab requires a layer of reliable, well-tested infrastructure between the
+            algorithms and the physical hardware. Below is a collection of open-source packages I
+            developed or significantly contributed to during my graduate research.
+         </p>
+      </div>
+
+      <div class="repo-grid">
+
+         <div class="repo-card featured-repo">
+            <h4><a href="https://github.com/DAIRLab/c3" target="_blank">DAIRLab / c3</a></h4>
+            <div class="repo-tags">
+               <span class="repo-tag">C++</span>
+               <span class="repo-tag">Python</span>
+               <span class="repo-tag">Drake</span>
+               <span class="repo-tag">Gurobi</span>
+               <span class="repo-tag">MPC</span>
+            </div>
+            <p>Reference implementation of Consensus Complementarity Control — a contact-implicit MPC framework for systems that make and break contact. Lead developer; drove full refactor, CI/CD, and example suite.</p>
+            <a href="c3.html" class="repo-link">Full project page &rarr;</a>
+         </div>
+
+         <div class="repo-card">
+            <h4><a href="https://github.com/DAIRLab/drake-ur-driver" target="_blank">DAIRLab / drake-ur-driver</a></h4>
+            <div class="repo-tags">
+               <span class="repo-tag">C++</span>
+               <span class="repo-tag">Drake</span>
+               <span class="repo-tag">LCM</span>
+               <span class="repo-tag">Universal Robots</span>
+            </div>
+            <p>Drake integration driver for Universal Robots (UR) arms. Supports multiple control modes (status-only, velocity, position, TCP position/velocity) and integrates with Drake's MultibodyPlant for dynamics.</p>
+            <a href="https://github.com/DAIRLab/drake-ur-driver" target="_blank" class="repo-link">GitHub &rarr;</a>
+         </div>
+
+         <div class="repo-card">
+            <h4><a href="https://github.com/DAIRLab/robotiq_gripper" target="_blank">DAIRLab / robotiq_gripper</a></h4>
+            <div class="repo-tags">
+               <span class="repo-tag">C++</span>
+               <span class="repo-tag">Python bindings</span>
+               <span class="repo-tag">TCP/IP</span>
+               <span class="repo-tag">Robotiq</span>
+            </div>
+            <p>C++ driver (with Python bindings) for Robotiq grippers over TCP/IP. Supports position control, force/speed regulation, status monitoring, and fault detection in both blocking and non-blocking modes.</p>
+            <a href="https://github.com/DAIRLab/robotiq_gripper" target="_blank" class="repo-link">GitHub &rarr;</a>
+         </div>
+
+         <div class="repo-card">
+            <h4><a href="https://github.com/DAIRLab/spacemouse_driver" target="_blank">DAIRLab / spacemouse_driver</a></h4>
+            <div class="repo-tags">
+               <span class="repo-tag">C++</span>
+               <span class="repo-tag">LCM</span>
+               <span class="repo-tag">Docker</span>
+               <span class="repo-tag">libspnav</span>
+            </div>
+            <p>Lightweight wrapper around libspnav that publishes SpaceMouse hardware input as LCM messages. Includes Docker support with Unix socket mounting for clean containerised deployment.</p>
+            <a href="https://github.com/DAIRLab/spacemouse_driver" target="_blank" class="repo-link">GitHub &rarr;</a>
+         </div>
+
+         <div class="repo-card">
+            <h4><a href="https://github.com/DAIRLab/docker-dair" target="_blank">DAIRLab / docker-dair</a></h4>
+            <div class="repo-tags">
+               <span class="repo-tag">Docker</span>
+               <span class="repo-tag">CI/CD</span>
+               <span class="repo-tag">DevOps</span>
+            </div>
+            <p>Lab-wide Docker infrastructure and base images used across DAIRLab projects. Standardises the development and deployment environment for reproducible research builds.</p>
+            <a href="https://github.com/DAIRLab/docker-dair" target="_blank" class="repo-link">GitHub &rarr;</a>
+         </div>
+
+         <div class="repo-card">
+            <h4><a href="https://github.com/DAIRLab/dairlib" target="_blank">DAIRLab / dairlib</a></h4>
+            <div class="repo-tags">
+               <span class="repo-tag">C++</span>
+               <span class="repo-tag">Drake</span>
+               <span class="repo-tag">Bazel</span>
+               <span class="repo-tag">Contributor</span>
+            </div>
+            <p>The core DAIRLab research library, built on top of Drake. Provides shared utilities, controllers, and simulation infrastructure used across the lab's research projects. Contributed patches and improvements as part of C3 development.</p>
+            <a href="https://github.com/DAIRLab/dairlib" target="_blank" class="repo-link">GitHub &rarr;</a>
+         </div>
+
+      </div>
+
+      <div class="project-links">
+         <a href="https://github.com/DAIRLab" target="_blank">DAIRLab GitHub</a>
+         <a href="c3.html">C3 Project Page</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

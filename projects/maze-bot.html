@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Maze-Traversal Bot — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Maze-Traversal Bot</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <video autoplay muted loop playsinline>
+         <source src="../videos/mazebot.mp4" type="video/mp4">
+      </video>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Multi-Disciplinary Project &mdash; Nanyang Technological University</p>
+      <h1>Maze-Traversal Bot</h1>
+
+      <div class="tags">
+         <span class="tag">Arduino</span>
+         <span class="tag">Embedded Systems</span>
+         <span class="tag">Path Planning</span>
+         <span class="tag">Sensor Fusion</span>
+      </div>
+
+      <div class="description">
+         <p>
+            An 8-person multi-disciplinary project where the objective was to build a robot that could autonomously
+            traverse and map an unknown maze. The team spanned hardware, software, and algorithms — requiring tight
+            cross-functional coordination over a single semester.
+         </p>
+         <p>
+            I led the hardware team, responsible for designing and building the Arduino-based physical platform:
+         </p>
+         <ul>
+            <li><strong>Sensor suite:</strong> ultrasonic and infrared sensors for wall detection and distance measurement, calibrated for consistent readings across maze materials.</li>
+            <li><strong>Motor control:</strong> a dual-motor drive system with PID-controlled speed, enabling precise turns and straight-line tracking.</li>
+            <li><strong>Command interface:</strong> the hardware layer exposes a clean serial protocol, letting the algorithm team send high-level movement commands (turn left, go forward N cm) without worrying about motor tuning.</li>
+         </ul>
+         <p>
+            The final system successfully traversed and fully mapped the competition maze, placing competitively
+            against other teams.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="https://github.com/Meow404/CE3004-arduino" target="_blank">Repository</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

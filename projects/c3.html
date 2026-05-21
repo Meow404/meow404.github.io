@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>C3: Consensus Complementarity Control — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+   <style>
+      .c3-demos {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 12px;
+         margin: 30px 0;
+      }
+      .c3-demos img {
+         width: 100%;
+         display: block;
+         border: 1px solid #222;
+      }
+      .c3-demos p {
+         font: 11px 'opensans-regular', sans-serif !important;
+         color: #555 !important;
+         text-align: center;
+         margin-top: 5px;
+      }
+      .pub-card {
+         background: #1a1a1a;
+         border: 1px solid #2a2a2a;
+         padding: 18px 20px;
+         margin: 24px 0;
+      }
+      .pub-card h4 {
+         color: #fff;
+         font: 14px/1.5em 'opensans-bold', sans-serif;
+         margin-bottom: 6px;
+      }
+      .pub-card p {
+         color: #888 !important;
+         font: 13px/1.6em 'opensans-regular', sans-serif !important;
+         margin-bottom: 10px !important;
+      }
+      .pub-card .pub-links { display: flex; gap: 10px; flex-wrap: wrap; }
+      .pub-card .pub-links a {
+         color: #11ABB0;
+         font: 12px 'opensans-bold', sans-serif;
+         text-decoration: none;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+      .pub-card .pub-links a:hover { color: #fff; }
+      .role-list li { color: #A8A8A8; font: 15px/1.8em 'librebaskerville-regular', serif; }
+      .role-list strong { color: #ddd; }
+   </style>
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">C3: Consensus Complementarity Control</span>
+   </nav>
+
+   <div class="project-hero-section" style="background:#0a0a0a;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; max-width:960px; margin:0 auto; gap:0;">
+         <img src="../videos/cartpole-softwalls.gif" alt="Cartpole with soft walls demo" style="width:100%; max-height:460px; object-fit:cover;">
+         <img src="../videos/cube_pivoting.gif" alt="Cube pivoting demo" style="width:100%; max-height:460px; object-fit:cover;">
+      </div>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Graduate Research &mdash; DAIRLab, University of Pennsylvania &mdash; May 2025–Present</p>
+      <h1>C3: Consensus Complementarity Control</h1>
+
+      <div class="tags">
+         <span class="tag">C++</span>
+         <span class="tag">Python</span>
+         <span class="tag">Drake</span>
+         <span class="tag">Gurobi</span>
+         <span class="tag">Contact-Implicit MPC</span>
+         <span class="tag">CI/CD</span>
+         <span class="tag">Bazel</span>
+         <span class="tag">LCM</span>
+      </div>
+
+      <div class="description">
+         <p>
+            Making and breaking contact with the environment is one of the hardest problems in robotics. The
+            moment a finger touches a box, a foot hits the ground, or a tool grips a surface, the system
+            dynamics become nonsmooth — the physics <em>jumps</em> discontinuously. Traditional MPC and
+            sampling-based controllers struggle here because they cannot reason across these contact transitions.
+         </p>
+         <p>
+            <strong style="color:#fff;">C3 (Consensus Complementarity Control)</strong> is a contact-implicit
+            MPC framework developed at the DAIRLab that solves this problem by reformulating contact as a
+            complementarity constraint and using ADMM to decompose the resulting mixed-integer-like problem into
+            parallel subproblems. The result is a controller that can plan <em>through</em> contact — deciding
+            when and how to make or break contact as part of the trajectory optimization.
+         </p>
+
+         <div class="c3-demos">
+            <div>
+               <img src="../videos/plate-balancing.gif" alt="Plate balancing">
+               <p>Plate balancing via contact control</p>
+            </div>
+            <div>
+               <img src="../videos/push_anything.gif" alt="Push anything">
+               <p>Multi-object pushing from first sight</p>
+            </div>
+         </div>
+
+         <p>
+            As the <strong style="color:#fff;">lead developer on the C3 GitHub repository</strong>, I drove a
+            comprehensive effort to make the research codebase production-quality:
+         </p>
+         <ul class="role-list">
+            <li><strong>Full codebase refactor</strong> — restructured the repository for modularity and long-term maintainability, separating simulation, hardware, and algorithm layers cleanly.</li>
+            <li><strong>CI/CD pipelines</strong> — built automated testing and integration workflows so every commit is validated against a suite of unit and integration tests.</li>
+            <li><strong>Example suite</strong> — created comprehensive, runnable examples (cartpole, plate balancing, cube pivoting, pushing) that both validate the algorithm and serve as onboarding for new contributors.</li>
+            <li><strong>Documentation and contributor guidelines</strong> — wrote guides and code structure documentation to enable the broader lab to build on top of C3.</li>
+         </ul>
+         <p>
+            Current and upcoming work focuses on extending C3 to new hardware platforms and pushing toward
+            a journal publication.
+         </p>
+      </div>
+
+      <!-- Related publication -->
+      <div class="pub-card">
+         <h4>Related Publication: Push Anything</h4>
+         <p>
+            Hien B., Yufeiyang G., Haoran Y., Eric C., Siddhant M., <u>Thomas Stephen Felix</u>, Brian A., Bibit B., and Michael Posa.<br>
+            <em>Push Anything: Single- and Multi-Object Pushing From First Sight with Contact-Implicit MPC</em>
+         </p>
+         <div class="pub-links">
+            <a href="https://dairlab.github.io/push-anything/" target="_blank">Website</a>
+            <a href="https://arxiv.org/abs/2510.19974" target="_blank">Paper (arXiv)</a>
+         </div>
+      </div>
+
+      <div class="project-links">
+         <a href="https://github.com/DAIRLab/c3" target="_blank">GitHub Repository</a>
+         <a href="https://dair.seas.upenn.edu/assets/pdf/Aydinoglu2024.pdf" target="_blank">C3 Paper (IEEE T-RO)</a>
+         <a href="https://dairlab.github.io/push-anything/" target="_blank">Push Anything Website</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

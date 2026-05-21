@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Autonomous VIO-based Quadcopter — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Autonomous VIO-based Quadcopter</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <video autoplay muted loop playsinline>
+         <source src="../videos/drone_flight.mp4" type="video/mp4">
+      </video>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Advanced Robotics &mdash; University of Pennsylvania</p>
+      <h1>Autonomous VIO-based Quadcopter</h1>
+
+      <div class="tags">
+         <span class="tag">Python</span>
+         <span class="tag">ROS</span>
+         <span class="tag">VIO</span>
+         <span class="tag">A* Planning</span>
+         <span class="tag">Trajectory Control</span>
+      </div>
+
+      <div class="description">
+         <p>
+            This project integrates Visual Inertial Odometry (VIO) with trajectory planning and control to achieve
+            fully autonomous quadcopter flight. The key challenge: making the drone navigate using only its own
+            state estimates instead of ground-truth data, as would be required in any real-world deployment.
+         </p>
+         <p>
+            We developed and tested everything in the flightsim environment, creating a closed-loop system that flies
+            based purely on onboard sensing. The pipeline consists of:
+         </p>
+         <ul>
+            <li>A VIO module providing real-time state estimates (position, velocity, orientation) from fused camera and IMU data.</li>
+            <li>An A*-based motion planner generating collision-free paths through the environment.</li>
+            <li>A trajectory controller that tracks smooth reference trajectories from the planner using the VIO state feedback.</li>
+         </ul>
+         <p>
+            Minor hardware tests were also conducted as proof of concept, validating that the simulation pipeline
+            transfers to a physical platform. This brings us one step closer to real-world autonomous flight.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="../docs/M6200_Project_Report.pdf" target="_blank"><i class="fa fa-file-pdf-o"></i> &nbsp;Report</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

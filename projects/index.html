@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>All Projects — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+   <style>
+      body { background: #0f0f0f; }
+
+      .all-projects-grid {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 20px;
+      }
+
+      @media only screen and (max-width: 1024px) {
+         .all-projects-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media only screen and (max-width: 600px) {
+         .all-projects-grid { grid-template-columns: 1fr; }
+      }
+   </style>
+</head>
+<body class="all-projects-page">
+
+   <div class="projects-header">
+      <div class="back-nav">
+         <a href="../index.html">&#8592; Back to Home</a>
+      </div>
+      <h1>All Projects</h1>
+      <p>A collection of robotics, ML, and systems projects from research and coursework.</p>
+   </div>
+
+   <div class="projects-grid-section">
+      <!-- Featured: C3 full-width card -->
+      <div style="margin-bottom: 20px;">
+         <div class="project-card" style="display:flex; flex-direction:row; background:#0f1a1a; border:1px solid #1a3a3a;">
+            <div class="card-image" style="flex:0 0 40%; aspect-ratio:unset; min-height:200px;">
+               <img src="../videos/push_anything.gif" alt="C3 Push Anything" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div class="card-info" style="padding:26px 28px; justify-content:center;">
+               <p class="card-context" style="color:#11ABB0;">DAIRLab Research &bull; UPenn &bull; Current</p>
+               <h5 style="font-size:18px; margin-bottom:10px;">C3: Consensus Complementarity Control</h5>
+               <p style="color:#95a3a3; line-height:1.7em;">Contact-implicit MPC that plans through making and breaking contact. Lead developer on the open-source repo — full refactor, CI/CD, and the example suite behind the <em>Push Anything</em> paper.</p>
+               <a href="c3.html" class="card-link" style="margin-top:4px;">View Project &rarr;</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="all-projects-grid">
+
+         <!-- Autonomous Quadcopter -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/Presentation1/motion_planning.png" alt="Autonomous VIO Quadcopter">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Advanced Robotics &bull; UPenn</p>
+               <h5>Autonomous VIO-based Quadcopter</h5>
+               <p>Fully autonomous quadcopter flight driven by Visual Inertial Odometry — no ground-truth data required.</p>
+               <a href="autonomous-quadcopter.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- MPC Quadrotor -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/Presentation1/mpc.png" alt="MPC Quadrotor">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Control &amp; Optimization &bull; UPenn</p>
+               <h5>3D MPC-Controlled Quadrotor</h5>
+               <p>Balances an inverted pendulum on a flying quadrotor using MPC, Direct Collocation, and RRT*.</p>
+               <a href="mpc-quadrotor.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- Drone Racing RL -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/Presentation1/rl.png" alt="Drone Racing RL">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Physical Intelligence &bull; UPenn</p>
+               <h5>Drone Racing via Reinforcement Learning</h5>
+               <p>PPO-trained quadrotor races through gates in NVIDIA Isaac Sim using only vision-based input.</p>
+               <a href="drone-racing-rl.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- Cube Stacking -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/Presentation1/kinematics.png" alt="Cube Stacking">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Intro to Robotics &bull; UPenn</p>
+               <h5>Cube Stacking Competition</h5>
+               <p>Autonomous robotic arm stacks cubes in order using inverse kinematics and computer vision.</p>
+               <a href="cube-stacking.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- Chess Bot -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/ROS.jpg" alt="Chess Bot">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Personal Project</p>
+               <h5>Chess Bot</h5>
+               <p>A 4-DOF robot arm navigating in configuration space with A* to play chess.</p>
+               <a href="chess-bot.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- CUDA Image Recognition -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/CUDAC.jpg" alt="CUDA Image Recognition">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Final Year Project &bull; NTU</p>
+               <h5>Image Recognition with CUDA C</h5>
+               <p>GPU-accelerated convolution-based image recognition on Jetson hardware for real-time applications.</p>
+               <a href="cuda-image-recognition.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- Digital Terpsitone -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/CS.jpg" alt="Digital Terpsitone">
+            </div>
+            <div class="card-info">
+               <p class="card-context">URECA Research &bull; NTU</p>
+               <h5>Digital Terpsitone</h5>
+               <p>Reviving a 50-year-old non-contact instrument using a Kinect sensor and C# with multi-player support.</p>
+               <a href="digital-terpsitone.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- Maze Bot -->
+         <div class="project-card">
+            <div class="card-image">
+               <img src="../images/Projects/Slide3.JPG" alt="Maze-Traversal Bot">
+            </div>
+            <div class="card-info">
+               <p class="card-context">Multi-Disciplinary Project &bull; NTU</p>
+               <h5>Maze-Traversal Bot</h5>
+               <p>An 8-person team project: an Arduino bot that autonomously traverses and maps an unknown maze.</p>
+               <a href="maze-bot.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- RobotRacer -->
+         <div class="project-card">
+            <div class="card-image" style="background:#111; display:flex; align-items:center; justify-content:center;">
+               <p style="color:#11ABB0; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:2px; text-align:center; padding:20px;">F1Tenth<br>Autonomous Racing</p>
+            </div>
+            <div class="card-info">
+               <p class="card-context">RobotRacer &bull; ESE 6150 &bull; UPenn</p>
+               <h5>F1Tenth RobotRacer</h5>
+               <p>10 progressive labs building a full autonomous racing stack — AEB, wall following, SLAM, MPC — culminating in a live race.</p>
+               <a href="roboracer.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- DS Stacking -->
+         <div class="project-card">
+            <div class="card-image" style="background:#111; display:flex; align-items:center; justify-content:center;">
+               <p style="color:#11ABB0; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:2px; text-align:center; padding:20px;">Neural DS<br>Manipulation</p>
+            </div>
+            <div class="card-info">
+               <p class="card-context">Learning &amp; Control &bull; MEAM 6230 &bull; UPenn</p>
+               <h5>Dual-Arm Stacking via Neural DS</h5>
+               <p>100% task completion on dual-arm cube stacking using Lyapunov-stable neural dynamical systems with scripted IK for contact phases.</p>
+               <a href="ds-stacking.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+         <!-- DAIRLab Infrastructure -->
+         <div class="project-card">
+            <div class="card-image" style="background:#0f1a1a; display:flex; align-items:center; justify-content:center;">
+               <p style="color:#11ABB0; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:2px; text-align:center; padding:20px;">DAIRLab<br>Open Source</p>
+            </div>
+            <div class="card-info">
+               <p class="card-context">DAIRLab &bull; UPenn</p>
+               <h5>DAIRLab Infrastructure</h5>
+               <p>Robotics drivers and tooling: UR arm driver, Robotiq gripper driver, SpaceMouse LCM bridge, Docker infrastructure, and more.</p>
+               <a href="dairlab-infrastructure.html" class="card-link">View Project &rarr;</a>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+</body>
+</html>

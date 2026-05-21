@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Drone Racing via Reinforcement Learning — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Drone Racing via Reinforcement Learning</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <video autoplay muted loop playsinline>
+         <source src="../videos/rl_training.mp4" type="video/mp4">
+      </video>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Physical Intelligence: Science and Systems &mdash; University of Pennsylvania</p>
+      <h1>Drone Racing using Reinforcement Learning</h1>
+
+      <div class="tags">
+         <span class="tag">PPO</span>
+         <span class="tag">Python</span>
+         <span class="tag">NVIDIA Isaac Sim</span>
+         <span class="tag">Reward Shaping</span>
+         <span class="tag">Vision-based Control</span>
+      </div>
+
+      <div class="description">
+         <p>
+            This project explores end-to-end autonomous drone racing using Proximal Policy Optimization (PPO) in
+            NVIDIA Isaac Sim. The goal: train a quadrotor agent to navigate through complex racing gates at speed
+            while avoiding obstacles, without any hand-crafted trajectory planning.
+         </p>
+         <p>
+            Key design decisions:
+         </p>
+         <ul>
+            <li><strong>Vision-based input:</strong> the agent perceives the environment through simulated onboard cameras, making the policy directly transferable to hardware.</li>
+            <li><strong>Reward shaping:</strong> a carefully designed reward function encourages aggressive gate traversal while penalizing crashes and excessive oscillation.</li>
+            <li><strong>Curriculum training:</strong> gate complexity and spacing are gradually increased as the agent improves, enabling stable learning on a hard task.</li>
+         </ul>
+         <p>
+            The result demonstrates that deep reinforcement learning can produce high-speed, obstacle-aware flight
+            policies without relying on privileged state information.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="https://github.com/ShahhhVihaan/drone_racing" target="_blank">Repository</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

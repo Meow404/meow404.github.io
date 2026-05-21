@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>3D MPC-Controlled Quadrotor — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">3D MPC-Controlled Quadrotor</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <video autoplay muted loop playsinline>
+         <source src="../videos/ipq.mp4" type="video/mp4">
+      </video>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Control and Optimization in Robotics &mdash; University of Pennsylvania</p>
+      <h1>3D MPC-Controlled Quadrotor with Inverted Pendulum</h1>
+
+      <div class="tags">
+         <span class="tag">Python</span>
+         <span class="tag">Drake</span>
+         <span class="tag">MPC</span>
+         <span class="tag">Direct Collocation</span>
+         <span class="tag">RRT*</span>
+         <span class="tag">Optimization</span>
+      </div>
+
+      <div class="description">
+         <p>
+            This project tackles the classic but challenging problem of balancing an inverted pendulum atop a
+            flying quadrotor — a highly nonlinear system combining aerial dynamics with inherently unstable
+            pendulum motion.
+         </p>
+         <p>
+            The pipeline combines three key components:
+         </p>
+         <ul>
+            <li><strong>Direct Collocation</strong> generates dynamically feasible reference trajectories that respect the joint system constraints.</li>
+            <li><strong>Model Predictive Control (MPC)</strong> tracks those trajectories in real time, solving a constrained optimization problem at each timestep to keep the pendulum upright while the quadrotor moves.</li>
+            <li><strong>RRT*</strong> provides collision-free path planning in obstacle-rich environments, feeding waypoints into the trajectory generator.</li>
+         </ul>
+         <p>
+            The result is a quadrotor that can navigate through cluttered spaces while maintaining balance of the
+            attached pendulum — a problem that would defeat most single-controller approaches.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="../docs/M517-report.pdf" target="_blank">Report</a>
+         <a href="https://github.com/Meow404/Inverted-Pendulum-Quadrotor" target="_blank">Repository</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

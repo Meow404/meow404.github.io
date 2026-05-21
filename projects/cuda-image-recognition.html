@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Image Recognition with CUDA C — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Image Recognition with CUDA C</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <img src="../images/Projects/6f9lr9.gif" alt="CUDA Image Recognition demo" />
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Final Year Project &mdash; Nanyang Technological University</p>
+      <h1>Image Recognition with CUDA C</h1>
+
+      <div class="tags">
+         <span class="tag">CUDA C</span>
+         <span class="tag">GPU Programming</span>
+         <span class="tag">Parallel Computing</span>
+         <span class="tag">Jetson</span>
+         <span class="tag">Computer Vision</span>
+      </div>
+
+      <div class="description">
+         <p>
+            CUDA C is the parallel computing framework that powers NVIDIA Jetson GPUs — the hardware of choice
+            for edge AI in autonomous vehicles. This project exploits CUDA to dramatically speed up a core
+            computer vision primitive: convolution-based image recognition.
+         </p>
+         <p>
+            Traditional CPU-based convolution processes image regions sequentially. By restructuring the computation
+            to run on hundreds of CUDA cores simultaneously, we achieved significant speedups critical for real-time
+            applications where reaction latency is directly tied to safety.
+         </p>
+         <p>
+            The implementation benchmarks and compares:
+         </p>
+         <ul>
+            <li>Sequential CPU convolution as a baseline.</li>
+            <li>Naive CUDA parallelization (one thread per output pixel).</li>
+            <li>Optimized CUDA with shared memory tiling to minimize global memory latency.</li>
+         </ul>
+         <p>
+            The project demonstrates both the potential and the engineering challenges of writing high-performance
+            GPU code for embedded robotics platforms.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="../docs/FYP Report.pdf" target="_blank">Report</a>
+         <a href="https://github.com/Meow404/FYP.git" target="_blank">Repository</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

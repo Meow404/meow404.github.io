@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Dual-Arm Stacking with Neural DS — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Dual-Arm Stacking with Neural Dynamical Systems</span>
+   </nav>
+
+   <!-- Text hero -->
+   <div style="padding-top:52px; background:#111; padding-bottom:40px; border-bottom:1px solid #1e1e1e; text-align:center;">
+      <div style="max-width:680px; margin:0 auto; padding:40px 24px 0;">
+         <p style="color:#11ABB0; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:3px; margin-bottom:14px;">MEAM 6230 &mdash; University of Pennsylvania</p>
+         <h2 style="color:#fff; font:34px/1.2em 'opensans-bold',sans-serif; margin-bottom:16px;">Dual-Arm Stacking via Neural Dynamical Systems</h2>
+         <p style="color:#888; font:16px/1.6em 'librebaskerville-regular',serif;">
+            100% task completion on dual-arm cube stacking using Lyapunov-stable neural DS controllers with
+            scripted IK for contact phases.
+         </p>
+      </div>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Learning and Control for Dynamical Systems &mdash; MEAM 6230, University of Pennsylvania</p>
+      <h1>Dual-Arm Stacking with Neural Dynamical Systems</h1>
+
+      <div class="tags">
+         <span class="tag">Python</span>
+         <span class="tag">Neural DS</span>
+         <span class="tag">Lyapunov Stability</span>
+         <span class="tag">Inverse Kinematics</span>
+         <span class="tag">Dual-Arm</span>
+         <span class="tag">Isaac Sim</span>
+         <span class="tag">Cartesian Modulation</span>
+      </div>
+
+      <div class="description">
+         <p>
+            Classical motion controllers for manipulation are either too rigid (scripted trajectories) or too
+            fragile (open-loop). This project explores a middle ground: using <strong style="color:#fff;">learned
+            neural dynamical systems (DS)</strong> to govern free-space motions, while switching to precise
+            scripted IK for constrained contact phases (grasp, lift, place).
+         </p>
+         <p>
+            The task is dual-arm cube stacking in simulation: two robot arms must coordinate to pick up cubes
+            and stack them in the correct order without interfering with each other's workspace.
+         </p>
+         <p>
+            The architecture:
+         </p>
+         <ul>
+            <li><strong>Neural DS controllers</strong> learn joint-space primitives for reach and transport motions. Each primitive is trained from demonstration data and constrained to be Lyapunov-stable — guaranteeing convergence to the goal regardless of starting configuration.</li>
+            <li><strong>Lyapunov safety projection</strong> reshapes the DS output at runtime to enforce stability, preventing the arms from entering divergent states even under perturbation.</li>
+            <li><strong>Cartesian workspace modulation</strong> enables the two arms to share the workspace safely, dynamically adjusting each arm's DS to avoid the other's trajectory.</li>
+            <li><strong>Lula IK</strong> handles constrained contact phases (grasp, lift, place) where geometric precision matters more than smooth flow.</li>
+         </ul>
+         <p>
+            With coordinate modulation enabled, the system achieved <strong style="color:#fff;">100% task
+            completion</strong> — stacking every cube in the correct order across all test trials. The project
+            highlighted that data quality (demonstration consistency) had a larger effect on final performance
+            than architecture complexity.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="https://github.com/naljain/ds_stacking" target="_blank">Repository</a>
+         <!-- Report link: add when available -->
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

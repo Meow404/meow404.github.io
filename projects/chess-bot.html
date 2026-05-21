@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Chess Bot — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Chess Bot</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <video autoplay muted loop playsinline>
+         <source src="../videos/chessbot.mp4" type="video/mp4">
+      </video>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Personal Project</p>
+      <h1>Chess Bot</h1>
+
+      <div class="tags">
+         <span class="tag">ROS</span>
+         <span class="tag">Configuration Space</span>
+         <span class="tag">A* Algorithm</span>
+         <span class="tag">Robotics</span>
+      </div>
+
+      <div class="description">
+         <p>
+            A personal project with the long-term goal of building a 4-DOF robot arm that can play a full game
+            of chess — detecting the board state, computing the best move, and physically executing piece
+            movements.
+         </p>
+         <p>
+            The current stage focuses on the motion planning foundations:
+         </p>
+         <ul>
+            <li><strong>Configuration Space planning:</strong> the arm's workspace is modelled in C-space, enabling the planner to reason about joint limits and self-collisions cleanly.</li>
+            <li><strong>A* search:</strong> an A* planner generates optimal joint-space paths between target configurations, ensuring smooth and collision-free motion.</li>
+            <li><strong>ROS integration:</strong> the full system runs on ROS, with a simulated and hardware-compatible control interface.</li>
+         </ul>
+         <p>
+            The next steps are integrating a chess engine (Stockfish or similar) and a vision system to close
+            the loop from board perception to physical move execution.
+         </p>
+      </div>
+
+      <div class="project-links">
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>

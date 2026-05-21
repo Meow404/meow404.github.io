@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Cube Stacking Competition — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="shortcut icon" href="../favicon.png">
+</head>
+<body class="single-project-page">
+
+   <nav class="project-nav-bar">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Projects</a>
+      <span class="sep">/</span>
+      <span class="current-title">Cube Stacking Competition</span>
+   </nav>
+
+   <div class="project-hero-section">
+      <video autoplay muted loop playsinline>
+         <source src="../videos/robo_comp.mp4" type="video/mp4">
+      </video>
+   </div>
+
+   <div class="project-body">
+      <p class="project-context">Introduction to Robotics &mdash; University of Pennsylvania</p>
+      <h1>Cube Stacking Competition</h1>
+
+      <div class="tags">
+         <span class="tag">Python</span>
+         <span class="tag">ROS</span>
+         <span class="tag">Inverse Kinematics</span>
+         <span class="tag">Computer Vision</span>
+         <span class="tag">Motion Planning</span>
+      </div>
+
+      <div class="description">
+         <p>
+            A competitive robotics project from the Introduction to Robotics course: autonomously detect, grasp,
+            and stack cubes in the correct order using a robotic manipulator arm, all under real-time constraints.
+         </p>
+         <p>
+            The full pipeline integrates three subsystems:
+         </p>
+         <ul>
+            <li><strong>Perception:</strong> a computer vision module detects cube positions and colors from an RGB-D camera feed, estimating 3D poses for the planner.</li>
+            <li><strong>Motion Planning:</strong> a path planner generates collision-free joint trajectories to approach each cube, using forward/inverse kinematics for precise end-effector positioning.</li>
+            <li><strong>Control:</strong> a ROS-based controller executes the planned trajectories, handling grasping and release actions via a gripper interface.</li>
+         </ul>
+         <p>
+            Our team's implementation was robust enough to complete the stacking task efficiently under competition
+            time constraints, handling variations in cube placement.
+         </p>
+      </div>
+
+      <div class="project-links">
+         <a href="../docs/MEAM_5200_Final_Project_Report.pdf" target="_blank">Report</a>
+         <a href="https://github.com/Meow404/meam520_labs" target="_blank">Repository</a>
+      </div>
+   </div>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+</body>
+</html>
