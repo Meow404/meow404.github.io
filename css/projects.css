@@ -297,42 +297,61 @@
 }
 
 /* ============================================================
-   3-D Rotating Sphere Word Cloud
+   2-D Packed Word Cloud (wordcloud2.js)
    ============================================================ */
 
-#wordSphere {
+#wordCloud {
    position: relative;
-   width: 100%;
-   max-width: 560px;
-   height: 480px;
+   display: block;
    margin: 10px auto 0;
-   cursor: grab;
-   overflow: visible;
-}
-#wordSphere:active { cursor: grabbing; }
-
-/* Individual tags — positioned by JS */
-.sw {
-   position: absolute;
    cursor: default;
-   font-family: 'opensans-bold', sans-serif;
-   color: #2b2b2b;
-   white-space: nowrap;
-   /* transform is set every frame by JS — no CSS default needed */
-   transition: color 0.18s ease, text-shadow 0.18s ease;
-   user-select: none;
-   line-height: 1;
-}
-.sw:hover {
-   color: #11ABB0 !important;
-   text-shadow: 0 0 14px rgba(17, 171, 176, 0.32);
-   /* no transform here — JS owns it */
+   /* width + height set dynamically by JS */
+   /* fade words out at left and right edges */
+   -webkit-mask-image: linear-gradient(to right, transparent, #000 55px, #000 calc(100% - 55px), transparent);
+   mask-image:         linear-gradient(to right, transparent, #000 55px, #000 calc(100% - 55px), transparent);
 }
 
-.sphere-hint {
+/* colour legend dots */
+.wc-legend {
+   display: flex;
+   gap: 18px;
+   flex-wrap: wrap;
+   margin: 12px 0 0;
+   justify-content: center;
+}
+.wc-legend span {
+   font: 11px 'opensans-regular', sans-serif;
+   color: #888;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+.wc-legend span::before {
+   content: '';
+   display: inline-block;
+   width: 8px;
+   height: 8px;
+   border-radius: 50%;
+   background: currentColor;
+   flex-shrink: 0;
+}
+.wc-legend .leg-hw   { color: #11ABB0; }
+.wc-legend .leg-algo { color: #3D7BC8; }
+.wc-legend .leg-lang { color: #6B7B8A; }
+
+.wc-section-label {
+   text-align: center;
+   font: 11px 'opensans-bold', sans-serif;
+   color: #555;
+   text-transform: uppercase;
+   letter-spacing: 2.5px;
+   margin-bottom: 10px;
+   margin-top: 40px;
+}
+
+.wc-hint {
    text-align: center;
    font: italic 12px 'librebaskerville-regular', serif;
    color: #aaa;
-   margin-bottom: 4px;
-   letter-spacing: 0.5px;
+   margin-bottom: 2px;
 }

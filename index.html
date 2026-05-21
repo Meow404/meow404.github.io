@@ -523,172 +523,309 @@
 
             </div><!-- end skill-bars -->
 
-            <p class="sphere-hint">Drag to rotate &bull; hover to explore</p>
-            <div id="wordSphere"></div>
+            <p class="wc-section-label">Other Technologies &amp; Tools</p>
+            <p class="wc-hint">Hover a word to pause &amp; highlight &mdash; click to visit the project</p>
+            <canvas id="wordCloud"></canvas>
+            <div class="wc-legend">
+               <span class="leg-hw">Hardware &amp; Robots</span>
+               <span class="leg-algo">Algorithms &amp; Control</span>
+               <span class="leg-lang">Languages &amp; Tools</span>
+            </div>
 
             <script>
             (function () {
-               /* [label, weight 1-5, vertical 0|1]
-                  weight → base font size; vertical → rotated 90° in sphere */
-               var W = [
-                  /* ── Level 5 ── */
-                  ['SLAM',5,0],['CUDA C',5,0],['Model Predictive Control',5,0],
-                  ['ROS 2',5,0],['Drake',5,0],['Linux',5,0],
-
-                  /* ── Level 4 ── */
-                  ['Gurobi',4,0],['Docker',4,0],['LiDAR',4,0],['Bazel',4,0],
-                  ['LCM',4,0],['Motion Planning',4,0],['Reinforcement Learning',4,0],
-                  ['Optimization',4,0],['NVIDIA',4,0],['System Integration',4,0],
-                  ['Trajectory Optimization',4,0],['Contact-Implicit MPC',4,0],
-
-                  /* ── Level 3 ── */
-                  ['KUKA',3,0],['ABB',3,0],['Universal Robots',3,0],
-                  ['Yaskawa',3,0],['Yamaha',3,0],['Mitsubishi',3,0],
-                  ['OpenCV',3,0],['TensorFlow',3,0],['PyTorch',3,0],
-                  ['NumPy',3,0],['MATLAB',3,0],['Arduino',3,0],
-                  ['Visual-Inertial Odometry',3,0],['IMU',3,0],['A*',3,0],
-                  ['PID Controller',3,0],['Proximal Policy Optimization',3,0],
-                  ['RRT-Star',3,0],['Inverse Kinematics',3,0],
-                  ['Forward Kinematics',3,0],['Neural Dynamical Systems',3,0],
-                  ['Lyapunov Stability',3,0],['State Estimation',3,0],
-                  ['Sensor Fusion',3,0],['Grasp Planning',3,0],['Path Planning',3,0],
-
-                  /* ── Level 2 ── */
-                  ['RealSense',2,0],['ZED',2,0],['Basler',2,0],['HIKRobot',2,0],
-                  ['MechMind',2,0],['MDVision',2,0],['Keyence',2,0],['3DConnexion',2,0],
-                  ['Gripper',2,0],['Slider',2,0],['Line Scanner',2,0],['QR Scanner',2,0],
-                  ['Rerun',2,0],['Embedded C',2,0],['C#',2,0],['Java',2,0],
-                  ['Assembly',2,0],['Bash',2,0],['SciPy',2,0],['PyTest',2,0],
-                  ['GoogleTest',2,0],['Scikit-learn',2,0],['PyBind',2,0],
-                  ['Direct Collocation',2,0],['Complementarity',2,0],
-                  ['PyQT',2,0],['RTOS',2,0],['Force Control',2,0],
-                  ['Impedance Control',2,0],['Kalman Filter',2,0],
-                  ['Point Cloud',2,0],['Sim-to-Real',2,0],
-                  ['Teleoperation',2,0],['Camera Calibration',2,0],
-                  ['Hand-Eye Calibration',2,0],['CasADi',2,0],
-                  ['OSQP',2,0],['MuJoCo',2,0],['IsaacSim',2,0],
-                  ['Gazebo',2,0],['CMake',2,0],['TCP/IP',2,0],
-                  ['Eigen',2,0],['EtherCAT',2,0],['Collision Detection',2,0],
-                  ['Pick and Place',2,0],['Visual Servoing',2,0],
-
-                  /* ── Level 1 ── */
-                  ['goLang',1,0],['VPython',1,0],['Firebase',1,0],['Vim',1,0],
-                  ['Appium',1,0],['Selenium',1,0],['Open3D',1,0],['PyBullet',1,0],
-                  ['Factor Graph',1,0],['Extended Kalman Filter',1,0]
+               var DATA = [
+                  ['SLAM',5,'al'],['CUDA C',5,'lg'],['MPC',5,'al'],
+                  ['ROS 2',5,'lg'],['Drake',5,'lg'],['Linux',5,'lg'],
+                  ['Gurobi',4,'lg'],['Docker',4,'lg'],['LiDAR',4,'hw'],['Bazel',4,'lg'],
+                  ['LCM',4,'lg'],['Motion Planning',4,'al'],['Reinforcement Learning',4,'al'],
+                  ['Optimization',4,'al'],['NVIDIA',4,'hw'],['System Integration',4,'al'],
+                  ['Trajectory Optimization',4,'al'],['Contact-Implicit MPC',4,'al'],
+                  ['KUKA',3,'hw'],['ABB',3,'hw'],['Universal Robots',3,'hw'],['Yaskawa',3,'hw'],
+                  ['Yamaha',3,'hw'],['Mitsubishi',3,'hw'],['OpenCV',3,'lg'],['TensorFlow',3,'lg'],
+                  ['PyTorch',3,'lg'],['NumPy',3,'lg'],['MATLAB',3,'lg'],['Arduino',3,'lg'],
+                  ['Visual-Inertial Odometry',3,'al'],['IMU',3,'hw'],['A*',3,'al'],
+                  ['PID Controller',3,'al'],['Proximal Policy Optimization',3,'al'],
+                  ['RRT*',3,'al'],['Inverse Kinematics',3,'al'],['Forward Kinematics',3,'al'],
+                  ['Neural Dynamical Systems',3,'al'],['Lyapunov Stability',3,'al'],
+                  ['State Estimation',3,'al'],['Sensor Fusion',3,'al'],
+                  ['Grasp Planning',3,'al'],['Path Planning',3,'al'],
+                  ['RealSense',2,'hw'],['ZED',2,'hw'],['Basler',2,'hw'],['HIKRobot',2,'hw'],
+                  ['MechMind',2,'hw'],['MDVision',2,'hw'],['Keyence',2,'hw'],['3DConnexion',2,'hw'],
+                  ['Gripper',2,'hw'],['Slider',2,'hw'],['Line Scanner',2,'hw'],['QR Scanner',2,'hw'],
+                  ['Rerun',2,'hw'],['Embedded C',2,'lg'],['C#',2,'lg'],['Java',2,'lg'],
+                  ['Assembly',2,'lg'],['Bash',2,'lg'],['SciPy',2,'lg'],['PyTest',2,'lg'],
+                  ['GoogleTest',2,'lg'],['Scikit-learn',2,'lg'],['PyBind',2,'lg'],
+                  ['Direct Collocation',2,'al'],['Complementarity',2,'al'],
+                  ['PyQT',2,'lg'],['RTOS',2,'lg'],['Force Control',2,'al'],
+                  ['Impedance Control',2,'al'],['Kalman Filter',2,'al'],
+                  ['Point Cloud',2,'al'],['Sim-to-Real',2,'al'],['Teleoperation',2,'al'],
+                  ['Camera Calibration',2,'al'],['Hand-Eye Calibration',2,'al'],
+                  ['OSQP',2,'lg'],['MuJoCo',2,'lg'],['IsaacSim',2,'lg'],
+                  ['Gazebo',2,'lg'],['CMake',2,'lg'],['TCP/IP',2,'hw'],['Eigen',2,'lg'],
+                  ['Collision Detection',2,'al'],
+                  ['Pick and Place',2,'al'],['Visual Servoing',2,'al'],
+                  ['goLang',1,'lg'],['VPython',1,'lg'],['Firebase',1,'lg'],['Vim',1,'lg'],
+                  ['Appium',1,'lg'],['Selenium',1,'lg'],['Open3D',1,'lg'],['PyBullet',1,'lg'],
+                  ['Extended Kalman Filter',1,'al']
                ];
 
-               /* Interleave weights for even sphere surface distribution */
-               var b={1:[],2:[],3:[],4:[],5:[]};
-               W.forEach(function(w){b[w[1]].push(w);});
-               var pat=[5,2,4,3,1,4,2,3,5,3,2,4,3,2,4,3,2,5,3,2,4,3,1,3,2,
-                        4,3,2,3,2,4,2,3,5,2,3,4,2,3,2,4,3,2,3,2,3,2,2,3,2,
-                        2,3,4,2,1,2,2,3,2,2,2,2,1,2,2,2,1,2,2,2];
-               var idx={1:0,2:0,3:0,4:0,5:0}, order=[];
-               pat.forEach(function(k){
-                  if(idx[k]<b[k].length) order.push(b[k][idx[k]++]);
+               var COL     = { hw:'#11ABB0', al:'#3D7BC8', lg:'#6B7B8A' };
+               var COL_HEX = { hw:'11ABB0',  al:'3D7BC8',  lg:'6B7B8A'  };
+
+               var ICONS = {
+                  'Linux':'linux','Docker':'docker','NVIDIA':'nvidia','OpenCV':'opencv',
+                  'TensorFlow':'tensorflow','PyTorch':'pytorch','NumPy':'numpy',
+                  'MATLAB':'matlab','Arduino':'arduino','Java':'java','Bash':'gnubash',
+                  'SciPy':'scipy','CMake':'cmake','Firebase':'firebase','Vim':'vim',
+                  'Selenium':'selenium','goLang':'go','C#':'csharp','PyTest':'pytest',
+                  'ROS 2':'ros','Bazel':'bazel','Scikit-learn':'scikitlearn'
+               };
+
+               var LINKS = {
+                  'Contact-Implicit MPC':'projects/c3.html','Complementarity':'projects/c3.html',
+                  'Gurobi':'projects/c3.html','Drake':'projects/c3.html',
+                  'Visual-Inertial Odometry':'projects/autonomous-quadcopter.html',
+                  'IMU':'projects/autonomous-quadcopter.html',
+                  'Sensor Fusion':'projects/autonomous-quadcopter.html',
+                  'State Estimation':'projects/autonomous-quadcopter.html',
+                  'Kalman Filter':'projects/autonomous-quadcopter.html',
+                  'MPC':'projects/mpc-quadrotor.html',
+                  'Direct Collocation':'projects/mpc-quadrotor.html',
+                  'Trajectory Optimization':'projects/mpc-quadrotor.html',
+                  'RRT*':'projects/mpc-quadrotor.html',
+                  'Reinforcement Learning':'projects/drone-racing-rl.html',
+                  'Proximal Policy Optimization':'projects/drone-racing-rl.html',
+                  'IsaacSim':'projects/drone-racing-rl.html',
+                  'Inverse Kinematics':'projects/cube-stacking.html',
+                  'Forward Kinematics':'projects/cube-stacking.html',
+                  'OpenCV':'projects/cube-stacking.html',
+                  'Grasp Planning':'projects/cube-stacking.html',
+                  'Pick and Place':'projects/cube-stacking.html',
+                  'A*':'projects/chess-bot.html','Path Planning':'projects/chess-bot.html',
+                  'CUDA C':'projects/cuda-image-recognition.html',
+                  'NVIDIA':'projects/cuda-image-recognition.html',
+                  'C#':'projects/digital-terpsitone.html',
+                  'Arduino':'projects/maze-bot.html',
+                  'SLAM':'projects/roboracer.html','ROS 2':'projects/roboracer.html',
+                  'LiDAR':'projects/roboracer.html','PID Controller':'projects/roboracer.html',
+                  'Neural Dynamical Systems':'projects/ds-stacking.html',
+                  'Lyapunov Stability':'projects/ds-stacking.html',
+                  'LCM':'projects/dairlab-infrastructure.html',
+                  'Bazel':'projects/dairlab-infrastructure.html',
+                  'Docker':'projects/dairlab-infrastructure.html',
+                  'TCP/IP':'projects/dairlab-infrastructure.html',
+                  'Teleoperation':'projects/dairlab-infrastructure.html',
+                  'Universal Robots':'projects/dairlab-infrastructure.html',
+                  'System Integration':'projects/dairlab-infrastructure.html'
+               };
+
+               var BASE_FS = 20;
+               var WF      = [0, 0.48, 0.58, 0.70, 0.84, 1.00];
+               var SPEED   = 0.45;
+               var EDGE    = 0.22;
+               var MAX_SPD = 4.5;
+
+               var canvas = document.getElementById('wordCloud');
+               if (!canvas || !canvas.getContext) return;
+               var ctx = canvas.getContext('2d');
+
+               var W, H, words = [], targetSpd = 1, curSpd = 1, raf, lastT, hovered = null;
+               var reentrySeq = 0;
+
+               var imgs = {};
+               DATA.forEach(function (d) {
+                  var icon = ICONS[d[0]];
+                  if (!icon) return;
+                  var img = new Image();
+                  img.crossOrigin = 'anonymous';
+                  img.src = 'https://cdn.simpleicons.org/' + icon + '/' + COL_HEX[d[2]];
+                  imgs[d[0]] = img;
                });
-               [5,4,3,2,1].forEach(function(k){
-                  while(idx[k]<b[k].length) order.push(b[k][idx[k]++]);
-               });
 
-               var el=document.getElementById('wordSphere');
-               if(!el) return;
-
-               var SZ={1:9,2:11,3:15,4:19,5:25};
-               var tags=order.map(function(w){
-                  var s=document.createElement('span');
-                  s.className='sw';
-                  s.textContent=w[0];
-                  s.dataset.sz=SZ[w[1]]||12;
-                  el.appendChild(s);
-                  return s;
-               });
-               var n=tags.length;
-
-               /* Golden-spiral distribution on unit sphere */
-               var pos=[];
-               var GA=Math.PI*(3-Math.sqrt(5));
-               for(var i=0;i<n;i++){
-                  var y=1-(i/(n-1))*2;
-                  var rr=Math.sqrt(Math.max(0,1-y*y));
-                  var th=GA*i;
-                  pos.push([rr*Math.cos(th),y,rr*Math.sin(th)]);
-               }
-
-               /* State — no auto-drift, static until user interacts */
-               var rx=0.25, ry=0;
-               var vx=0, vy=0, tvx=0, tvy=0;
-               var drag=false, lx=0, ly=0;
-
-               /* Hover: steer rotation */
-               el.addEventListener('mousemove',function(e){
-                  if(drag) return;
-                  var b=el.getBoundingClientRect();
-                  tvx=(e.clientY-b.top -b.height*.5)/(b.height*.5)*0.018;
-                  tvy=(e.clientX-b.left-b.width *.5)/(b.width *.5)*0.018;
-               });
-               el.addEventListener('mouseleave',function(){
-                  if(!drag){tvx=0;tvy=0;}
-               });
-
-               /* Drag: manual rotation */
-               el.addEventListener('mousedown',function(e){
-                  drag=true; lx=e.clientX; ly=e.clientY;
-                  vx=0; vy=0; tvx=0; tvy=0; e.preventDefault();
-               });
-               document.addEventListener('mousemove',function(e){
-                  if(!drag) return;
-                  ry+=(e.clientX-lx)*0.005;
-                  rx+=(e.clientY-ly)*0.005;
-                  lx=e.clientX; ly=e.clientY;
-               });
-               document.addEventListener('mouseup',function(){
-                  if(!drag) return;
-                  drag=false; tvx=0; tvy=0;
-               });
-
-               /* Touch */
-               el.addEventListener('touchstart',function(e){
-                  drag=true; lx=e.touches[0].clientX; ly=e.touches[0].clientY;
-                  vx=0; vy=0; tvx=0; tvy=0;
-               },{passive:true});
-               el.addEventListener('touchmove',function(e){
-                  if(!drag) return;
-                  ry+=(e.touches[0].clientX-lx)*0.005;
-                  rx+=(e.touches[0].clientY-ly)*0.005;
-                  lx=e.touches[0].clientX; ly=e.touches[0].clientY;
-               },{passive:true});
-               el.addEventListener('touchend',function(){drag=false;tvx=0;tvy=0;});
-
-               /* Rotation helpers */
-               function rY(p,a){var c=Math.cos(a),s=Math.sin(a);return[p[0]*c+p[2]*s,p[1],-p[0]*s+p[2]*c];}
-               function rX(p,a){var c=Math.cos(a),s=Math.sin(a);return[p[0],p[1]*c-p[2]*s,p[1]*s+p[2]*c];}
-
-               /* Render loop */
-               function frame(){
-                  vx+=(tvx-vx)*0.08; vy+=(tvy-vy)*0.08;
-                  rx+=vx; ry+=vy;
-
-                  var W2=el.offsetWidth, H=el.offsetHeight;
-                  var cx=W2*.5, cy=H*.5;
-                  var rad=Math.min(W2,H)*0.46;
-
-                  for(var i=0;i<n;i++){
-                     var p=rX(rY(pos[i],ry),rx);
-                     var dep=(p[2]+1)*.5;
-                     var bs=+tags[i].dataset.sz;
-                     tags[i].style.left  =(cx+p[0]*rad).toFixed(1)+'px';
-                     tags[i].style.top   =(cy+p[1]*rad).toFixed(1)+'px';
-                     tags[i].style.fontSize=(bs*(.38+.62*dep)).toFixed(1)+'px';
-                     tags[i].style.opacity =(.15+.85*dep).toFixed(3);
-                     tags[i].style.zIndex  =(dep*100|0);
-                     tags[i].style.transform='translate(-50%,-50%)';
+               function findClearY(w) {
+                  var pad  = 3;
+                  var minY = Math.ceil(w.fs * 0.65);
+                  var maxY = H - Math.ceil(w.fs * 0.65);
+                  if (maxY <= minY) return H / 2;
+                  var blocked = [];
+                  for (var i = 0; i < words.length; i++) {
+                     var o = words[i];
+                     if (o === w || o.y == null) continue;
+                     var xOk = w.x < o.x + o.pw + pad && w.x + w.pw + pad > o.x;
+                     if (!xOk) continue;
+                     var h2 = Math.ceil((w.fs + o.fs) * 0.5) + pad;
+                     blocked.push([o.y - h2, o.y + h2]);
                   }
-                  requestAnimationFrame(frame);
+                  if (!blocked.length) return minY + Math.random() * (maxY - minY);
+                  blocked.sort(function (a, b) { return a[0] - b[0]; });
+                  var m = [blocked[0].slice()];
+                  for (var i = 1; i < blocked.length; i++) {
+                     var last = m[m.length - 1];
+                     if (blocked[i][0] <= last[1]) last[1] = Math.max(last[1], blocked[i][1]);
+                     else m.push(blocked[i].slice());
+                  }
+                  var free = [], cur = minY;
+                  for (var i = 0; i < m.length; i++) {
+                     if (m[i][0] > cur + 2) free.push([cur, m[i][0]]);
+                     cur = Math.max(cur, m[i][1]);
+                  }
+                  if (cur < maxY - 2) free.push([cur, maxY]);
+                  if (!free.length) return minY + Math.random() * (maxY - minY);
+                  var total = 0;
+                  for (var i = 0; i < free.length; i++) total += free[i][1] - free[i][0];
+                  var r = Math.random() * total, acc = 0;
+                  for (var i = 0; i < free.length; i++) {
+                     acc += free[i][1] - free[i][0];
+                     if (r <= acc) return free[i][0] + Math.random() * (free[i][1] - free[i][0]);
+                  }
+                  return minY + Math.random() * (maxY - minY);
                }
-               frame();
+
+               function applyDepth(w) {
+                  var d    = 0.38 + Math.random() * 0.62;
+                  var scl  = 0.22 + d * 0.78;
+                  w.depth  = d;
+                  w.fs     = Math.max(7, Math.round(BASE_FS * WF[w.wt] * scl));
+                  ctx.font = 'bold ' + w.fs + 'px opensans-bold, sans-serif';
+                  var lh   = ICONS[w.text] ? w.fs + 2 : 0;
+                  w.lh     = lh;
+                  w.pw     = (lh ? lh + 4 : 0) + ctx.measureText(w.text).width;
+                  w.alpha  = 0.18 + d * 0.82;
+               }
+
+               function init() {
+                  var cont = canvas.parentElement;
+                  W = Math.min(Math.max(cont ? cont.offsetWidth : 480, 300), 580);
+                  H = 220;
+                  canvas.width  = W;
+                  canvas.height = H;
+                  var d = DATA.slice();
+                  for (var i = d.length - 1; i > 0; i--) {
+                     var j = 0 | (Math.random() * (i + 1));
+                     var t = d[i]; d[i] = d[j]; d[j] = t;
+                  }
+                  words = d.map(function (e) { return { text:e[0], wt:e[1], col:COL[e[2]] }; });
+                  var TAPE   = W * 7;
+                  var bucket = TAPE / words.length;
+                  words.forEach(function (w, i) {
+                     applyDepth(w);
+                     w.x = -60 + i * bucket + Math.random() * bucket;
+                     w.y = null;
+                     w.y = findClearY(w);
+                  });
+                  reentrySeq = 0;
+                  if (raf) cancelAnimationFrame(raf);
+                  lastT = null;
+                  raf = requestAnimationFrame(frame);
+               }
+
+               function frame(ts) {
+                  var dt = lastT ? Math.min((ts - lastT) / 16.67, 4) : 1;
+                  lastT  = ts;
+                  curSpd += (targetSpd - curSpd) * 0.09;
+
+                  ctx.clearRect(0, 0, W, H);
+                  ctx.textBaseline = 'middle';
+                  ctx.shadowBlur   = 0;
+
+                  words.sort(function (a, b) { return a.depth - b.depth; });
+
+                  words.forEach(function (w) {
+                     w.x -= SPEED * curSpd * dt;
+
+                     if (w.x + w.pw < 0) {
+                        var slot = (reentrySeq % words.length) / words.length;
+                        reentrySeq++;
+                        applyDepth(w);
+                        var jit = (W * 5.0 / words.length) * 0.5;
+                        w.x = W * 1.5 + slot * W * 5.0 + Math.random() * jit;
+                        w.y = null;
+                        w.y = findClearY(w);
+                     }
+
+                     var isHov = (hovered === w);
+                     ctx.font = 'bold ' + w.fs + 'px opensans-bold, sans-serif';
+
+                     if (isHov) {
+                        ctx.globalAlpha  = 1.0;
+                        ctx.fillStyle    = w.col;
+                        ctx.shadowColor  = w.col;
+                        ctx.shadowBlur   = 14;
+                     } else {
+                        ctx.globalAlpha  = hovered ? w.alpha * 0.07 : w.alpha;
+                        ctx.fillStyle    = w.col;
+                        ctx.shadowBlur   = 0;
+                     }
+
+                     var tx = w.x, img = w.lh && imgs[w.text];
+                     if (img && img.complete && img.naturalWidth > 0) {
+                        ctx.drawImage(img, w.x, w.y - w.lh / 2, w.lh, w.lh);
+                        tx = w.x + w.lh + 4;
+                     }
+                     ctx.fillText(w.text, tx, w.y);
+
+                     /* Underline linked words on hover */
+                     if (isHov && LINKS[w.text]) {
+                        ctx.shadowBlur = 0;
+                        ctx.globalAlpha = 1.0;
+                        var ulY = w.y + Math.ceil(w.fs * 0.55);
+                        ctx.fillRect(tx, ulY, ctx.measureText(w.text).width, 1);
+                     }
+
+                     ctx.shadowBlur = 0;
+                  });
+
+                  ctx.globalAlpha = 1;
+                  raf = requestAnimationFrame(frame);
+               }
+
+               function hitTest(mx, my) {
+                  var best = null, bd = -1;
+                  words.forEach(function (w) {
+                     if (w.y == null) return;
+                     var hh = w.fs * 0.65;
+                     if (my < w.y - hh || my > w.y + hh || mx < w.x || mx > w.x + w.pw) return;
+                     if (w.depth > bd) { best = w; bd = w.depth; }
+                  });
+                  return best;
+               }
+
+               canvas.addEventListener('mousemove', function (e) {
+                  var r  = canvas.getBoundingClientRect();
+                  var mx = e.clientX - r.left;
+                  var my = e.clientY - r.top;
+                  var hit = hitTest(mx, my);
+                  if (hit) {
+                     hovered    = hit;
+                     targetSpd  = 0;
+                     canvas.style.cursor = LINKS[hit.text] ? 'pointer' : 'default';
+                  } else {
+                     hovered = null;
+                     canvas.style.cursor = 'default';
+                     var rx = mx / W;
+                     if (rx < EDGE)          targetSpd = 1 + (1 - rx / EDGE) * (MAX_SPD - 1);
+                     else if (rx > 1 - EDGE) targetSpd = 1 + ((rx - (1 - EDGE)) / EDGE) * (MAX_SPD - 1);
+                     else                    targetSpd = 1;
+                  }
+               });
+
+               canvas.addEventListener('mouseleave', function () {
+                  targetSpd = 1; hovered = null; canvas.style.cursor = 'default';
+               });
+
+               canvas.addEventListener('click', function (e) {
+                  var r   = canvas.getBoundingClientRect();
+                  var hit = hitTest(e.clientX - r.left, e.clientY - r.top);
+                  if (hit && LINKS[hit.text]) window.location.href = LINKS[hit.text];
+               });
+
+               if (document.fonts && document.fonts.ready) document.fonts.ready.then(init);
+               else if (document.readyState === 'complete') init();
+               else window.addEventListener('load', init);
             })();
             </script>
+
          </div> <!-- main-col end -->
 
       </div> <!-- End skills -->
