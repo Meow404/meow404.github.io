@@ -694,11 +694,15 @@
                }
 
                function init() {
+                  var dpr  = window.devicePixelRatio || 1;
                   var cont = canvas.parentElement;
                   W = Math.min(Math.max(cont ? cont.offsetWidth : 480, 300), 580);
                   H = 220;
-                  canvas.width  = W;
-                  canvas.height = H;
+                  canvas.width        = W * dpr;
+                  canvas.height       = H * dpr;
+                  canvas.style.width  = W + 'px';
+                  canvas.style.height = H + 'px';
+                  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                   var d = DATA.slice();
                   for (var i = d.length - 1; i > 0; i--) {
                      var j = 0 | (Math.random() * (i + 1));
