@@ -541,6 +541,7 @@
                var DATA = [
                   ['SLAM',5,'al'],['CUDA C',5,'lg'],['MPC',5,'al'],
                   ['ROS 2',5,'lg'],['Drake',5,'lg'],['Linux',5,'lg'],
+                  ['Contact-Implicit MPC',4,'al'],
                   ['Gurobi',4,'lg'],['Docker',4,'lg'],['LiDAR',4,'hw'],['Bazel',4,'lg'],
                   ['LCM',4,'lg'],['Motion Planning',4,'al'],['Reinforcement Learning',4,'al'],
                   ['Optimization',4,'al'],['NVIDIA',4,'hw'],['System Integration',4,'al'],
@@ -554,6 +555,7 @@
                   ['Neural Dynamical Systems',3,'al'],['Lyapunov Stability',3,'al'],
                   ['State Estimation',3,'al'],['Sensor Fusion',3,'al'],
                   ['Grasp Planning',3,'al'],['Path Planning',3,'al'],
+                  ['Imitation Learning',3,'al'],['Pure Pursuit',3,'al'],['CLIP',3,'lg'],
                   ['RealSense',2,'hw'],['ZED',2,'hw'],['Basler',2,'hw'],['HIKRobot',2,'hw'],
                   ['MechMind',2,'hw'],['MDVision',2,'hw'],['Keyence',2,'hw'],['3DConnexion',2,'hw'],
                   ['Gripper',2,'hw'],['Industrial Slider',2,'hw'],['Industrial Line Scanner',2,'hw'],['Industrial QR Scanner',2,'hw'],
@@ -567,7 +569,8 @@
                   ['Camera Calibration',2,'al'],['Hand-Eye Calibration',2,'al'],
                   ['OSQP',2,'lg'],['MuJoCo',2,'lg'],['IsaacSim',2,'lg'],
                   ['Gazebo',2,'lg'],['CMake',2,'lg'],['TCP/IP',2,'hw'],['Eigen',2,'lg'],
-                  ['Collision Detection',2,'al'],
+                  ['Collision Detection',2,'al'],['CVXPY',2,'lg'],
+                  ['FastSAM',2,'lg'],['Scene Graphs',2,'al'],['Control Barrier Functions',2,'al'],
                   ['Pick and Place',2,'al'],['Visual Servoing',2,'al'],
                   ['goLang',1,'lg'],['VPython',1,'lg'],['Firebase',1,'lg'],['Vim',1,'lg'],
                   ['Appium',1,'lg'],['Selenium',1,'lg'],['Open3D',1,'lg'],['PyBullet',1,'lg'],
@@ -615,6 +618,10 @@
                   'LiDAR':'projects/roboracer.html','PID Controller':'projects/roboracer.html',
                   'Neural Dynamical Systems':'projects/ds-stacking.html',
                   'Lyapunov Stability':'projects/ds-stacking.html',
+                  'CLIP':'projects/scene-understanding.html',
+                  'FastSAM':'projects/scene-understanding.html',
+                  'Scene Graphs':'projects/scene-understanding.html',
+                  'Pure Pursuit':'projects/roboracer.html',
                   'LCM':'projects/dairlab-infrastructure.html',
                   'Bazel':'projects/dairlab-infrastructure.html',
                   'Docker':'projects/dairlab-infrastructure.html',
@@ -919,7 +926,9 @@
 
                <div class="project-card">
                   <div class="card-image">
-                     <img src="https://raw.githubusercontent.com/naljain/ds_stacking/main/data/results/dual_neural.gif" alt="Dual-arm Neural DS stacking">
+                     <video autoplay muted loop playsinline>
+                        <source src="videos/ds_stacking.mp4" type="video/mp4">
+                     </video>
                   </div>
                   <div class="card-info">
                      <p class="card-context">Learning &amp; Control &bull; MEAM 6230 &bull; UPenn</p>
