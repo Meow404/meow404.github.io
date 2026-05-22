@@ -249,6 +249,35 @@ ul#nav li.current a { color: #F06000; }
    margin-right: 15px;
    font-size: 20px;
 }
+#about .skip-to-projects {
+   color: #11ABB0;
+   text-decoration: none;
+   display: inline-flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 8px;
+   transition: color 0.2s;
+}
+#about .skip-to-projects:hover {
+   color: #fff;
+}
+#about .skip-to-projects .skip-label {
+   font: 11px/1em 'opensans-bold', sans-serif;
+   text-transform: uppercase;
+   letter-spacing: 2.5px;
+}
+#about .skip-to-projects .skip-triangle {
+   display: block;
+   width: 0;
+   height: 0;
+   border-left: 7px solid transparent;
+   border-right: 7px solid transparent;
+   border-top: 8px solid currentColor;
+   transition: transform 0.25s;
+}
+#about .skip-to-projects:hover .skip-triangle {
+   transform: translateY(4px);
+}
 
 
 /* ------------------------------------------------------------------ */

@@ -1,35 +1,55 @@
 /* ============================================================
-   Project Cards — main page portfolio section
+   Generic card structure — applies to ALL pages
    ============================================================ */
 
-#portfolio .project-card {
-   background: #1a1a1a;
-   margin-bottom: 20px;
+.project-card {
    overflow: hidden;
    display: flex;
    flex-direction: column;
 }
 
-#portfolio .project-card .card-image {
+.project-card .card-image {
    position: relative;
    overflow: hidden;
    aspect-ratio: 16 / 9;
-   background: #111;
+   flex-shrink: 0;
 }
 
-#portfolio .project-card .card-image img,
-#portfolio .project-card .card-image video {
+.project-card .card-image img,
+.project-card .card-image video {
    width: 100%;
    height: 100%;
    object-fit: cover;
    display: block;
+}
+
+/* ============================================================
+   Project Cards — main page portfolio section (dark)
+   ============================================================ */
+
+#portfolio .project-card {
+   background: #fff;
+   border: 1px solid #e8eaee;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+   margin-bottom: 20px;
+   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+#portfolio .project-card:hover {
+   border-color: #11ABB0;
+   transform: translateY(-3px);
+   box-shadow: 0 10px 28px rgba(17, 171, 176, 0.12);
+}
+
+#portfolio .project-card .card-image img,
+#portfolio .project-card .card-image video {
    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 #portfolio .project-card:hover .card-image img,
 #portfolio .project-card:hover .card-image video {
-   transform: scale(1.05);
-   opacity: 0.75;
+   transform: scale(1.04);
+   opacity: 0.85;
 }
 
 #portfolio .project-card .card-info {
@@ -40,11 +60,14 @@
 }
 
 #portfolio .project-card .card-info h5 {
-   color: #fff;
+   color: #1a1c24;
    font: 15px/1.4em 'opensans-bold', sans-serif;
    margin-bottom: 7px;
    margin-top: 0;
+   transition: color 0.2s;
 }
+
+#portfolio .project-card:hover .card-info h5 { color: #11ABB0; }
 
 #portfolio .project-card .card-info .card-context {
    color: #11ABB0;
@@ -55,7 +78,7 @@
 }
 
 #portfolio .project-card .card-info p {
-   color: #888;
+   color: #6a6e7a;
    font: 13px/1.6em 'librebaskerville-regular', serif;
    margin-bottom: 14px;
    flex: 1;
@@ -68,12 +91,27 @@
    text-decoration: none;
    text-transform: uppercase;
    letter-spacing: 1.5px;
-   transition: color 0.2s;
+   transition: color 0.2s, letter-spacing 0.2s;
    align-self: flex-start;
 }
 
 #portfolio .project-card .card-link:hover {
-   color: #fff;
+   color: #0c8a8e;
+   letter-spacing: 2px;
+}
+
+/* ============================================================
+   2×2 portfolio grid — main page
+   ============================================================ */
+
+#portfolio .portfolio-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+   #portfolio .portfolio-grid { grid-template-columns: 1fr; }
 }
 
 #portfolio .view-all-wrap {
@@ -83,8 +121,8 @@
 
 #portfolio .view-all-wrap .button {
    background: transparent;
-   border: 1px solid #fff;
-   color: #fff;
+   border: 1px solid #11ABB0;
+   color: #11ABB0;
    font: 14px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 2px;
@@ -96,30 +134,28 @@
 
 #portfolio .view-all-wrap .button:hover {
    background: #11ABB0;
-   border-color: #11ABB0;
+   color: #fff;
 }
 
 /* ============================================================
-   All-Projects Page
+   All-Projects Page (light)
    ============================================================ */
 
 .all-projects-page {
-   background: #0f0f0f;
+   background: #f5f6fa;
    min-height: 100vh;
 }
 
 .projects-header {
-   background: #111;
+   background: #fff;
    padding: 50px 40px 40px;
-   border-bottom: 1px solid #222;
+   border-bottom: 1px solid #e8eaee;
 }
 
-.projects-header .back-nav {
-   margin-bottom: 20px;
-}
+.projects-header .back-nav { margin-bottom: 20px; }
 
 .projects-header .back-nav a {
-   color: #95a3a3;
+   color: #9a9faa;
    text-decoration: none;
    font: 13px 'opensans-regular', sans-serif;
    transition: color 0.2s;
@@ -128,13 +164,13 @@
 .projects-header .back-nav a:hover { color: #11ABB0; }
 
 .projects-header h1 {
-   color: #fff;
+   color: #1a1c24;
    font: 36px/1.1em 'opensans-bold', sans-serif;
    margin: 0 0 8px;
 }
 
 .projects-header p {
-   color: #888;
+   color: #6a6e7a;
    font: 15px 'librebaskerville-regular', serif;
    margin: 0;
 }
@@ -145,12 +181,97 @@
    margin: 0 auto;
 }
 
+/* Cards on the all-projects page (light) */
+.projects-grid-section .project-card {
+   background: #fff;
+   border: 1px solid #e8eaee;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+   margin-bottom: 0;
+   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.projects-grid-section .project-card:hover {
+   border-color: #11ABB0;
+   transform: translateY(-3px);
+   box-shadow: 0 10px 28px rgba(17, 171, 176, 0.12);
+}
+
+.projects-grid-section .project-card .card-image img,
+.projects-grid-section .project-card .card-image video {
+   transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.projects-grid-section .project-card:hover .card-image img,
+.projects-grid-section .project-card:hover .card-image video {
+   transform: scale(1.04);
+   opacity: 0.85;
+}
+
+.projects-grid-section .project-card .card-info {
+   padding: 16px 18px 18px;
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+}
+
+.projects-grid-section .project-card .card-info h5 {
+   color: #1a1c24;
+   font: 15px/1.4em 'opensans-bold', sans-serif;
+   margin-bottom: 7px;
+   margin-top: 0;
+}
+
+.projects-grid-section .project-card .card-info .card-context {
+   color: #11ABB0;
+   font: 11px 'opensans-bold', sans-serif;
+   text-transform: uppercase;
+   letter-spacing: 1.5px;
+   margin-bottom: 8px;
+}
+
+.projects-grid-section .project-card .card-info p {
+   color: #6a6e7a;
+   font: 13px/1.6em 'librebaskerville-regular', serif;
+   margin-bottom: 14px;
+   flex: 1;
+}
+
+.projects-grid-section .project-card .card-link {
+   color: #11ABB0;
+   font: 12px 'opensans-bold', sans-serif;
+   text-decoration: none;
+   text-transform: uppercase;
+   letter-spacing: 1.5px;
+   transition: color 0.2s;
+   align-self: flex-start;
+}
+
+.projects-grid-section .project-card .card-link:hover { color: #0c8a8e; }
+
+/* Placeholder panels for projects without video */
+.card-placeholder {
+   background: #eef1f6;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.card-placeholder .placeholder-label {
+   font: 11px 'opensans-bold', sans-serif;
+   color: #11ABB0;
+   opacity: 0.5;
+   text-transform: uppercase;
+   letter-spacing: 2.5px;
+   text-align: center;
+   line-height: 1.8em;
+}
+
 /* ============================================================
-   Individual Project Page
+   Individual Project Page (light)
    ============================================================ */
 
 .single-project-page {
-   background: #0f0f0f;
+   background: #fff;
    min-height: 100vh;
 }
 
@@ -160,17 +281,18 @@
    left: 0;
    right: 0;
    z-index: 500;
-   background: rgba(10, 10, 10, 0.96);
+   background: rgba(255, 255, 255, 0.97);
    padding: 14px 40px;
    display: flex;
    align-items: center;
    gap: 6px;
-   border-bottom: 1px solid #222;
-   backdrop-filter: blur(6px);
+   border-bottom: 1px solid #e8eaee;
+   backdrop-filter: blur(8px);
+   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.06);
 }
 
 .project-nav-bar a {
-   color: #888;
+   color: #8a8fa0;
    text-decoration: none;
    font: 13px 'opensans-regular', sans-serif;
    transition: color 0.2s;
@@ -179,31 +301,32 @@
 .project-nav-bar a:hover { color: #11ABB0; }
 
 .project-nav-bar .sep {
-   color: #444;
+   color: #ccd0da;
    font-size: 14px;
    margin: 0 4px;
 }
 
 .project-nav-bar .current-title {
-   color: #fff;
+   color: #1a1c24;
    font: 13px 'opensans-bold', sans-serif;
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
 }
 
+/* Dark cinematic hero — keeps video contrast regardless of page theme */
 .project-hero-section {
    padding-top: 52px;
-   background: #111;
-   text-align: center;
+   background: #1a1c24;
+   overflow: hidden;
 }
 
 .project-hero-section video,
 .project-hero-section img {
-   max-width: 100%;
-   max-height: 520px;
-   object-fit: contain;
-   display: inline-block;
+   width: 100%;
+   max-height: 420px;
+   object-fit: cover;
+   display: block;
 }
 
 .project-body {
@@ -221,7 +344,7 @@
 }
 
 .project-body h1 {
-   color: #fff;
+   color: #1a1c24;
    font: 32px/1.25em 'opensans-bold', sans-serif;
    margin-bottom: 22px;
 }
@@ -234,16 +357,24 @@
 }
 
 .project-body .tag {
-   background: #1a1a1a;
-   color: #95a3a3;
-   padding: 5px 14px;
+   background: #f0fafa;
+   color: #0d9194;
+   padding: 4px 13px;
    border-radius: 20px;
-   font: 12px 'opensans-regular', sans-serif;
-   border: 1px solid #2e2e2e;
+   font: 11px 'opensans-bold', sans-serif;
+   letter-spacing: 0.5px;
+   border: 1px solid #c8ecee;
+   transition: background 0.2s, color 0.2s;
+}
+
+.project-body .tag:hover {
+   background: #11ABB0;
+   color: #fff;
+   border-color: #11ABB0;
 }
 
 .project-body .description {
-   color: #A8A8A8;
+   color: #4a4e5a;
    font: 16px/1.85em 'librebaskerville-regular', serif;
    margin-bottom: 30px;
 }
@@ -255,9 +386,7 @@
    margin-bottom: 18px;
 }
 
-.project-body .description li {
-   margin-bottom: 6px;
-}
+.project-body .description li { margin-bottom: 6px; }
 
 .project-body .project-links {
    display: flex;
@@ -265,15 +394,15 @@
    flex-wrap: wrap;
    margin-top: 36px;
    padding-top: 30px;
-   border-top: 1px solid #222;
+   border-top: 1px solid #e8eaee;
 }
 
 .project-body .project-links a {
    display: inline-block;
    padding: 10px 22px;
    background: transparent;
-   border: 1px solid #555;
-   color: #ccc;
+   border: 1px solid #11ABB0;
+   color: #11ABB0;
    text-decoration: none;
    font: 12px 'opensans-bold', sans-serif;
    text-transform: uppercase;
@@ -297,7 +426,7 @@
 }
 
 /* ============================================================
-   2-D Packed Word Cloud (wordcloud2.js)
+   2-D Packed Word Cloud
    ============================================================ */
 
 #wordCloud {
@@ -305,13 +434,10 @@
    display: block;
    margin: 10px auto 0;
    cursor: default;
-   /* width + height set dynamically by JS */
-   /* fade words out at left and right edges */
    -webkit-mask-image: linear-gradient(to right, transparent, #000 55px, #000 calc(100% - 55px), transparent);
    mask-image:         linear-gradient(to right, transparent, #000 55px, #000 calc(100% - 55px), transparent);
 }
 
-/* colour legend dots */
 .wc-legend {
    display: flex;
    gap: 18px;
