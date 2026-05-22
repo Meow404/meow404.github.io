@@ -104,7 +104,7 @@ header .social li {
    padding: 0;
 }
 header .social li a { color: #fff; }
-header .social li a:hover { color: #11ABB0; }
+header .social li a:hover { color: #b87333; }
 
 /* scrolldown link */
 header .scrolldown a {
@@ -126,7 +126,7 @@ header .scrolldown a {
    -o-transition: all .3s ease-in-out;
    transition: all .3s ease-in-out;
 }
-header .scrolldown a:hover { color: #11ABB0; }
+header .scrolldown a:hover { color: #b87333; }
 
 /* primary navigation
 --------------------------------------------------------------------- */
@@ -211,7 +211,7 @@ ul#nav li.current a { color: #F06000; }
 }
 
 #about a, #about a:visited  { color: #fff; }
-#about a:hover, #about a:focus { color: #11ABB0; }
+#about a:hover, #about a:focus { color: #b87333; }
 
 #about h2 {
    font: 22px/30px 'opensans-bold', sans-serif;
@@ -250,7 +250,7 @@ ul#nav li.current a { color: #F06000; }
    font-size: 20px;
 }
 #about .skip-to-projects {
-   color: #11ABB0;
+   color: #b87333;
    text-decoration: none;
    display: inline-flex;
    flex-direction: column;
@@ -285,13 +285,13 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #resume {
-   background: #fff;
+   background: #f5f0ea;
    padding-top: 90px;
    padding-bottom: 72px;
    overflow: hidden;
 }
 
-#resume a, #resume a:visited  { color: #11ABB0; }
+#resume a, #resume a:visited  { color: #b87333; }
 #resume a:hover, #resume a:focus { color: #313131; }
 
 #resume h1 {
@@ -301,7 +301,7 @@ ul#nav li.current a { color: #F06000; }
    line-height: 200%;
 }
 #resume h1 span {
-   border-bottom: 3px solid #11ABB0;
+   border-bottom: 3px solid #b87333;
    padding-bottom: 6px;
 }
 #resume h3 {
@@ -501,7 +501,7 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #portfolio {
-   background: #ebeeee;
+   background: #f0ebe3;
    padding-top: 90px;
    padding-bottom: 60px;
 }
@@ -912,7 +912,7 @@ call-to-action .button {
 }
 #contact .section-head { margin-bottom: 42px; }
 
-#contact a, #contact a:visited  { color: #11ABB0; }
+#contact a, #contact a:visited  { color: #b87333; }
 #contact a:hover, #contact a:focus { color: #fff; }
 
 #contact h1 {
@@ -973,7 +973,7 @@ call-to-action .button {
 #contact textarea:focus,
 #contact select:focus {
 	color: #fff;
-	background-color: #11ABB0;
+	background-color: #b87333;
 }
 #contact button.submit {
 	text-transform: uppercase;
@@ -992,7 +992,7 @@ call-to-action .button {
 	background: #fff;
 }
 #contact span.required {
-	color: #11ABB0;
+	color: #b87333;
 	font-size: 13px;
 }
 #message-warning, #message-success {
@@ -1004,7 +1004,7 @@ call-to-action .button {
    margin-left: 26%;
 }
 #message-warning { color: #D72828; }
-#message-success { color: #11ABB0; }
+#message-success { color: #b87333; }
 
 #message-warning i,
 #message-success i {
@@ -1119,5 +1119,108 @@ footer .social-links li:first-child { margin-left: 0; }
    line-height: 60px;
  	border-radius: 100%;
 }
-#go-top a:hover { background-color: #0F9095; }
+#go-top a:hover { background-color: #b87333; }
+
+/* ================================================================
+   THEME TOGGLE BUTTON
+================================================================ */
+
+#theme-toggle {
+   position: fixed;
+   bottom: 28px;
+   right: 28px;
+   z-index: 9999;
+   width: 44px;
+   height: 44px;
+   border-radius: 50%;
+   border: 1.5px solid rgba(255,255,255,0.12);
+   background: rgba(30, 32, 45, 0.9);
+   backdrop-filter: blur(8px);
+   cursor: pointer;
+   font-size: 18px;
+   line-height: 1;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+   transition: transform 0.18s, border-color 0.18s, background 0.25s;
+   color: #e0d8c8;
+}
+#theme-toggle:hover {
+   transform: scale(1.12);
+   border-color: #b87333;
+}
+
+html[data-theme="light"] #theme-toggle {
+   background: rgba(255,255,255,0.9);
+   border-color: rgba(0,0,0,0.10);
+   color: #1a1c24;
+   box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+/* ================================================================
+   DARK MODE OVERRIDES
+================================================================ */
+
+html[data-theme="dark"] body        { background: #060c1e; }
+
+/* Nav */
+html[data-theme="dark"] .opaque     { background-color: #040918 !important; }
+
+/* About section */
+html[data-theme="dark"] #about      { background: #0a1228; }
+html[data-theme="dark"] #about p    { color: #3a4c64; }
+html[data-theme="dark"] #about .download .button          { background: #0e1a30; color: #e0d8c8; }
+html[data-theme="dark"] #about .download .button:hover    { background: #b87333; color: #fff; }
+
+/* Resume section */
+html[data-theme="dark"] #resume               { background: #090f20; }
+html[data-theme="dark"] #resume h1,
+html[data-theme="dark"] #resume h2,
+html[data-theme="dark"] #resume h3,
+html[data-theme="dark"] #resume h4            { color: #e0d8c8; }
+html[data-theme="dark"] #resume h1 span       { border-bottom-color: #b87333; }
+html[data-theme="dark"] #resume p             { color: #8090b0; }
+html[data-theme="dark"] #resume .info         { color: #4a5870; }
+html[data-theme="dark"] #resume .date         { color: #4a5870; }
+html[data-theme="dark"] #resume a,
+html[data-theme="dark"] #resume a:visited     { color: #b87333; }
+html[data-theme="dark"] #resume a:hover       { color: #d4924a; }
+html[data-theme="dark"] .bars                 { background: #0e1a30; }
+html[data-theme="dark"] .bars li em           { color: #8090b0; }
+
+/* Portfolio section */
+html[data-theme="dark"] #portfolio            { background: #060a1a; }
+html[data-theme="dark"] #portfolio h1         { color: #1a2848; }
+
+html[data-theme="dark"] #portfolio .project-card {
+   background: #0c1830;
+   border-color: #182848;
+   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+html[data-theme="dark"] #portfolio .project-card:hover {
+   border-color: #b87333;
+   box-shadow: 0 10px 28px rgba(184,115,51,0.18);
+}
+html[data-theme="dark"] #portfolio .project-card .card-info h5        { color: #e0d8c8; }
+html[data-theme="dark"] #portfolio .project-card:hover .card-info h5  { color: #d4924a; }
+html[data-theme="dark"] #portfolio .project-card .card-info p          { color: #4a5870; }
+
+html[data-theme="dark"] #portfolio .view-all-wrap .button              { border-color: #b87333; color: #b87333; }
+html[data-theme="dark"] #portfolio .view-all-wrap .button:hover        { background: #b87333; color: #fff; }
+
+/* Contact section */
+html[data-theme="dark"] #contact              { background: #040918; }
+html[data-theme="dark"] #contact input,
+html[data-theme="dark"] #contact textarea     { background: #1a1c24; color: #e0d8c8; }
+html[data-theme="dark"] #contact input:focus,
+html[data-theme="dark"] #contact textarea:focus { background: #182848; }
+
+/* Footer */
+html[data-theme="dark"] footer                { color: #0e1a30; }
+html[data-theme="dark"] footer a              { color: #2a2d3a; }
+
+/* Go-top button */
+html[data-theme="dark"] #go-top a            { background-color: #0e1a30; }
+html[data-theme="dark"] #go-top a:hover      { background-color: #b87333; }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+   <script>(function(){var t=localStorage.getItem('tsf-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
    <meta charset="utf-8">
    <title>Dual-Arm Stacking with Neural DS — Thomas Stephen Felix</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -44,7 +45,7 @@
       <div class="description">
          <p>
             Classical motion controllers for manipulation are either too rigid (scripted trajectories) or too
-            fragile (open-loop). This project explores a middle ground: using <strong style="color:#11ABB0;">learned
+            fragile (open-loop). This project explores a middle ground: using <strong style="color:#b87333;">learned
             neural dynamical systems (DS)</strong> to govern free-space motions, while switching to precise
             scripted IK for constrained contact phases (grasp, lift, place).
          </p>
@@ -62,7 +63,7 @@
             <li><strong>Lula IK</strong> handles constrained contact phases (grasp, lift, place) where geometric precision matters more than smooth flow.</li>
          </ul>
          <p>
-            With coordinate modulation enabled, the system achieved <strong style="color:#11ABB0;">100% task
+            With coordinate modulation enabled, the system achieved <strong style="color:#b87333;">100% task
             completion</strong> — stacking every cube in the correct order across all test trials. The project
             highlighted that data quality (demonstration consistency) had a larger effect on final performance
             than architecture complexity.
@@ -76,5 +77,7 @@
    </div>
 
    <script src="../js/jquery-1.10.2.min.js"></script>
+   <script src="../js/theme.js"></script>
+   <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
 </body>
 </html>

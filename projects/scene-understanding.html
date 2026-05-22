@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+   <script>(function(){var t=localStorage.getItem('tsf-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
    <meta charset="utf-8">
    <title>3D Scene Understanding with Concept Graphs — Thomas Stephen Felix</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -45,20 +46,20 @@
             Most robot perception systems either produce flat 2D segmentation masks or rigid 3D maps with
             fixed object vocabularies. This project builds a complete pipeline that goes further: an agent
             navigates a photorealistic indoor environment, constructs a dense 3D volumetric map, and
-            organises every detected object into a <strong style="color:#11ABB0;">queryable scene graph</strong>
+            organises every detected object into a <strong style="color:#b87333;">queryable scene graph</strong>
             — all without any fixed class list.
          </p>
          <p>
-            The system runs end-to-end inside the <strong style="color:#11ABB0;">AI2-Thor</strong> simulator,
+            The system runs end-to-end inside the <strong style="color:#b87333;">AI2-Thor</strong> simulator,
             collecting RGB-D observations from a set of sampled viewpoints:
          </p>
          <ul>
-            <li><strong>Segmentation</strong> — <strong style="color:#11ABB0;">FastSAM</strong> runs on each RGB frame to produce instance masks. Unlike class-driven detectors, FastSAM segments anything, giving the pipeline open-vocabulary coverage of every object in the scene.</li>
-            <li><strong>Embedding &amp; classification</strong> — Each masked region is passed through a <strong style="color:#11ABB0;">CLIP</strong> image encoder. The resulting embedding is matched against a user-supplied class list (with a minimum confidence threshold) so objects get soft, overrideable labels rather than hard predictions.</li>
+            <li><strong>Segmentation</strong> — <strong style="color:#b87333;">FastSAM</strong> runs on each RGB frame to produce instance masks. Unlike class-driven detectors, FastSAM segments anything, giving the pipeline open-vocabulary coverage of every object in the scene.</li>
+            <li><strong>Embedding &amp; classification</strong> — Each masked region is passed through a <strong style="color:#b87333;">CLIP</strong> image encoder. The resulting embedding is matched against a user-supplied class list (with a minimum confidence threshold) so objects get soft, overrideable labels rather than hard predictions.</li>
             <li><strong>3D backprojection</strong> — Using the depth channel and the camera's known intrinsics and pose, every segmented pixel is lifted into world-frame 3D, producing per-detection point clouds.</li>
             <li><strong>Multi-view fusion</strong> — An <code>ObjectFuser</code> associates detections across viewpoints by centroid distance, CLIP similarity, and 3D bounding-box IoU. Duplicate tracks are merged; short-lived noise tracks are pruned.</li>
             <li><strong>OctoMap</strong> — Surviving tracks are inserted into a 3D octree, giving a compact, voxelised representation of the scene geometry with per-object colouring.</li>
-            <li><strong>LLM scene graph</strong> — <strong style="color:#11ABB0;">GPT-4</strong> is prompted with each object's label and centroid and asked to infer spatial and semantic relationships (e.g. "lamp is on table", "chair is next to desk"). These edges are added to a graph structure that supports interactive sub-graph queries ("where are the chairs?").</li>
+            <li><strong>LLM scene graph</strong> — <strong style="color:#b87333;">GPT-4</strong> is prompted with each object's label and centroid and asked to infer spatial and semantic relationships (e.g. "lamp is on table", "chair is next to desk"). These edges are added to a graph structure that supports interactive sub-graph queries ("where are the chairs?").</li>
          </ul>
          <p>
             The result is a persistent, queryable 3D world model — an agent can ask natural-language
@@ -89,5 +90,7 @@
    </div>
 
    <script src="../js/jquery-1.10.2.min.js"></script>
+   <script src="../js/theme.js"></script>
+   <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+   <script>(function(){var t=localStorage.getItem('tsf-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
    <meta charset="utf-8">
    <title>DAIRLab Open-Source Infrastructure — Thomas Stephen Felix</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,44 +18,45 @@
          margin: 28px 0;
       }
       .repo-card {
-         background: #141414;
-         border: 1px solid #222;
+         background: #fff;
+         border: 1px solid #e8eaee;
          padding: 20px 22px;
          display: flex;
          flex-direction: column;
          gap: 8px;
+         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       }
       .repo-card h4 {
-         color: #fff;
+         color: #1a1c24;
          font: 14px 'opensans-bold', sans-serif;
          margin: 0;
       }
       .repo-card h4 a {
-         color: #fff;
+         color: #1a1c24;
          text-decoration: none;
          transition: color 0.2s;
       }
-      .repo-card h4 a:hover { color: #11ABB0; }
+      .repo-card h4 a:hover { color: #b87333; }
       .repo-card .repo-tags {
          display: flex;
          flex-wrap: wrap;
          gap: 5px;
       }
       .repo-card .repo-tag {
-         background: #1e1e1e;
-         color: #666;
+         background: #f0f1f8;
+         color: #6a6e7a;
          padding: 2px 9px;
          border-radius: 20px;
          font: 11px 'opensans-regular', sans-serif;
-         border: 1px solid #2a2a2a;
+         border: 1px solid #dde1ea;
       }
       .repo-card p {
-         color: #888;
+         color: #6a6e7a;
          font: 13px/1.55em 'librebaskerville-regular', serif;
          margin: 0;
       }
       .repo-card .repo-link {
-         color: #11ABB0;
+         color: #b87333;
          font: 11px 'opensans-bold', sans-serif;
          text-decoration: none;
          text-transform: uppercase;
@@ -62,13 +64,13 @@
          margin-top: 4px;
          align-self: flex-start;
       }
-      .repo-card .repo-link:hover { color: #fff; }
+      .repo-card .repo-link:hover { color: #9a5f28; }
 
       .featured-repo {
-         border-color: #11ABB0;
-         background: #0f1a1a;
+         border-color: #b87333;
+         background: #fef3e8;
       }
-      .featured-repo h4 a { color: #11ABB0; }
+      .featured-repo h4 a { color: #b87333; }
 
       @media only screen and (max-width: 680px) {
          .repo-grid { grid-template-columns: 1fr; }
@@ -87,7 +89,7 @@
 
    <div style="padding-top:52px; background:#111; padding-bottom:40px; border-bottom:1px solid #1e1e1e; text-align:center;">
       <div style="max-width:680px; margin:0 auto; padding:40px 24px 0;">
-         <p style="color:#11ABB0; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:3px; margin-bottom:14px;">DAIRLab &mdash; University of Pennsylvania</p>
+         <p style="color:#b87333; font:11px 'opensans-bold',sans-serif; text-transform:uppercase; letter-spacing:3px; margin-bottom:14px;">DAIRLab &mdash; University of Pennsylvania</p>
          <h2 style="color:#fff; font:34px/1.2em 'opensans-bold',sans-serif; margin-bottom:16px;">Open-Source Robotics Infrastructure</h2>
          <p style="color:#888; font:16px/1.6em 'librebaskerville-regular',serif;">
             A collection of robotics drivers, tooling, and infrastructure packages developed and maintained
@@ -202,5 +204,7 @@
    </div>
 
    <script src="../js/jquery-1.10.2.min.js"></script>
+   <script src="../js/theme.js"></script>
+   <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+   <script>(function(){var t=localStorage.getItem('tsf-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
    <meta charset="utf-8">
    <title>RobotRacer — F1Tenth Autonomous Racing — Thomas Stephen Felix</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,7 +18,7 @@
       }
       .lab-table th {
          text-align: left;
-         color: #11ABB0;
+         color: #b87333;
          font: 12px 'opensans-bold', sans-serif;
          text-transform: uppercase;
          letter-spacing: 1.5px;
@@ -49,7 +50,7 @@
          white-space: nowrap;
       }
       .lab-table td:last-child a {
-         color: #11ABB0;
+         color: #b87333;
          font: 11px 'opensans-bold', sans-serif;
          text-decoration: none;
          text-transform: uppercase;
@@ -59,7 +60,7 @@
       .lab-table tr:hover { background: #111; }
 
       .phase-label {
-         color: #11ABB0;
+         color: #b87333;
          font: 11px 'opensans-bold', sans-serif;
          text-transform: uppercase;
          letter-spacing: 2px;
@@ -110,8 +111,8 @@
             to a full racing stack capable of competing at speed on a closed circuit.
          </p>
          <p>
-            The course culminates in two events: a <strong style="color:#11ABB0;">final race</strong> where teams
-            compete head-to-head for fastest lap times, and a <strong style="color:#11ABB0;">final project</strong>
+            The course culminates in two events: a <strong style="color:#b87333;">final race</strong> where teams
+            compete head-to-head for fastest lap times, and a <strong style="color:#b87333;">final project</strong>
             where teams implement a novel algorithm of their choice on the platform.
          </p>
       </div>
@@ -215,5 +216,7 @@
    </div>
 
    <script src="../js/jquery-1.10.2.min.js"></script>
+   <script src="../js/theme.js"></script>
+   <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
 </body>
 </html>
