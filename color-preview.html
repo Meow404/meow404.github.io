@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Palette Preview — Navy & Terra Family</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0a0a0a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #fff; padding-bottom: 80px; }
+
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,10,0.96); backdrop-filter: blur(10px);
+  border-bottom: 1px solid #181818;
+  padding: 16px 32px; display: flex; align-items: baseline; gap: 20px;
+}
+.top-bar h1 { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #444; }
+.family-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 2px 10px; border-radius: 10px; }
+.fam-cool { background: rgba(96,165,250,0.12); color: #60a5fa; border: 1px solid rgba(96,165,250,0.2); }
+.fam-warm { background: rgba(234,108,48,0.12); color: #ea6c30; border: 1px solid rgba(234,108,48,0.2); }
+
+.group-header {
+  padding: 40px 32px 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.group-header h2 { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #333; }
+.group-line { flex: 1; height: 1px; background: #181818; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 2px; padding: 0 2px 2px;
+}
+
+.palette {
+  border: 2px solid transparent;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+  cursor: pointer;
+}
+.palette:hover { border-color: var(--ac); transform: scale(1.01); z-index: 2; box-shadow: 0 0 40px rgba(0,0,0,.6); }
+
+.pal-header {
+  background: #111; padding: 11px 16px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid #1c1c1c;
+}
+.pal-swatches { display: flex; gap: 4px; }
+.sw { width: 11px; height: 11px; border-radius: 50%; }
+.pal-name  { font-size: 12px; font-weight: 700; color: #ccc; flex: 1; }
+.pal-desc  { font-size: 10px; color: #3a3a3a; font-style: italic; }
+
+.panels { display: flex; }
+.panel  { flex: 1; padding: 16px; min-width: 0; }
+.panel + .panel { border-left: 2px solid #111; }
+.dp { background: var(--dbg); }
+.lp { background: var(--lbg); }
+
+.mode-label { font-size: 7px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 11px; opacity: 0.25; }
+.dp .mode-label { color: #fff; }
+.lp .mode-label { color: #000; }
+
+/* ── Dark panel ── */
+.dp-nav { background: rgba(0,0,0,0.3); border-radius: 3px; padding: 7px 10px; display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
+.dp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ac); flex-shrink: 0; }
+.dp-link { font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--d-sub); }
+.dp-link.on { color: var(--ac); }
+.dp-sep { flex: 1; }
+
+.dp-name { font-size: 22px; font-weight: 800; line-height: 1.1; color: var(--d-text); margin-bottom: 2px; }
+.dp-sub  { font-size: 8px; letter-spacing: 2px; color: var(--d-sub); text-transform: uppercase; margin-bottom: 9px; }
+.dp-line { height: 1.5px; background: linear-gradient(to right, var(--ac), transparent); opacity: 0.5; margin-bottom: 9px; }
+
+.dp-social { display: flex; gap: 6px; margin-bottom: 12px; }
+.dp-icon {
+  width: 23px; height: 23px; border-radius: 50%;
+  background: var(--d-card); border: 1px solid var(--d-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8.5px; color: var(--d-sub);
+}
+.dp-icon.hl { color: var(--ac); border-color: var(--ac); background: color-mix(in srgb, var(--ac) 8%, var(--d-card)); }
+
+.dp-card { background: var(--d-card); border: 1px solid var(--d-border); border-radius: 3px; padding: 9px 11px; margin-bottom: 8px; }
+.dp-ctag   { font-size: 7.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--ac); margin-bottom: 2px; }
+.dp-ctitle { font-size: 11px; font-weight: 700; color: var(--d-text); margin-bottom: 3px; }
+.dp-cdesc  { font-size: 8.5px; color: var(--d-sub); line-height: 1.5; margin-bottom: 5px; }
+.dp-clink  { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ac); }
+.dp-bar    { width: 18px; height: 2px; background: var(--ac); border-radius: 2px; margin-bottom: 4px; }
+
+.dp-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.dp-tag  {
+  font-size: 8px; padding: 2px 8px; border-radius: 10px;
+  background: color-mix(in srgb, var(--ac) 10%, var(--d-card));
+  border: 1px solid color-mix(in srgb, var(--ac) 22%, var(--d-border));
+  color: color-mix(in srgb, var(--ac) 70%, #fff);
+}
+
+/* ── Light panel ── */
+.lp-nav { background: rgba(255,255,255,0.65); border: 1px solid var(--l-border); border-radius: 3px; padding: 7px 10px; display: flex; align-items: center; gap: 12px; margin-bottom: 13px; }
+.lp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ac); flex-shrink: 0; }
+.lp-link { font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--l-sub); }
+.lp-link.on { color: var(--ac); }
+.lp-sep { flex: 1; }
+
+.lp-sh-pre   { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--l-sub); margin-bottom: 2px; }
+.lp-sh-title { font-size: 16px; font-weight: 800; color: var(--l-text); line-height: 1; margin-bottom: 5px; }
+.lp-accent   { width: 24px; height: 2.5px; background: var(--ac); border-radius: 2px; margin-bottom: 10px; }
+
+.lp-card { background: var(--l-card); border: 1px solid var(--l-border); border-radius: 3px; display: flex; overflow: hidden; margin-bottom: 8px; }
+.lp-card:hover { border-color: var(--ac); }
+.lp-img  { width: 52px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; background: var(--lbg); border-right: 1px solid var(--l-border); }
+.lp-body { padding: 8px 10px; flex: 1; }
+.lp-ctag   { font-size: 7.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--ac); margin-bottom: 2px; }
+.lp-ctitle { font-size: 11px; font-weight: 700; color: var(--l-text); margin-bottom: 3px; }
+.lp-clink  { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ac); }
+
+.lp-rline  { border-left: 2.5px solid var(--ac); padding-left: 8px; margin-bottom: 8px; }
+.lp-rtitle { font-size: 10px; font-weight: 700; color: var(--l-text); }
+.lp-rsub   { font-size: 8.5px; color: var(--l-sub); margin-top: 2px; }
+
+.lp-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+.lp-tag  { font-size: 8px; padding: 2px 8px; border-radius: 10px; background: var(--l-tag-bg); border: 1px solid var(--l-tag-bd); color: var(--l-tag-tx); }
+
+.lp-btn  { display: inline-block; border: 1px solid var(--ac); color: var(--ac); font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+
+/* ── reference pill ── */
+.ref-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 10px; margin-right: 6px;
+}
+.ref-chip.liked { background: rgba(255,255,255,0.05); border: 1px solid #333; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>More Like Those Three</h1>
+  <span class="family-label fam-cool">5 × Cool / Navy</span>
+  <span class="family-label fam-warm">5 × Warm / Terra</span>
+</div>
+
+<!-- ════════════════════════════════
+     COOL / NAVY FAMILY
+════════════════════════════════ -->
+<div class="group-header">
+  <h2>Cool &amp; Navy — like Indigo Slate + Midnight Navy</h2>
+  <div class="group-line"></div>
+</div>
+<div class="grid">
+
+<!-- 1. COBALT NIGHT -->
+<div class="palette" style="
+  --ac:#4361ee; --dbg:#050c1e; --d-card:#0b1638; --d-border:#142248; --d-text:#d0e0ff; --d-sub:#2a4480;
+  --lbg:#ecf0ff; --l-card:#fff; --l-border:#b8c8f8; --l-text:#060c30; --l-sub:#3a5090;
+  --l-tag-bg:#dbeafe; --l-tag-bd:#93c5fd; --l-tag-tx:#1d4ed8;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#050c1e"></div><div class="sw" style="background:#4361ee"></div><div class="sw" style="background:#ecf0ff"></div></div>
+    <div class="pal-name">Cobalt Night</div>
+    <div class="pal-desc">deeper, more electric than Midnight Navy</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. STARLIGHT -->
+<div class="palette" style="
+  --ac:#818cf8; --dbg:#07051c; --d-card:#100d2e; --d-border:#1c1848; --d-text:#e0d8ff; --d-sub:#342870;
+  --lbg:#eeeaff; --l-card:#fff; --l-border:#c8b8f0; --l-text:#0c0520; --l-sub:#5a3890;
+  --l-tag-bg:#ede9fe; --l-tag-bd:#c4b5fd; --l-tag-tx:#5b21b6;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#07051c"></div><div class="sw" style="background:#818cf8"></div><div class="sw" style="background:#eeeaff"></div></div>
+    <div class="pal-name">Starlight</div>
+    <div class="pal-desc">blue-purple dark, soft violet — more dreamy than Indigo Slate</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. STORM -->
+<div class="palette" style="
+  --ac:#5b8db8; --dbg:#0a1220; --d-card:#121e30; --d-border:#1e3048; --d-text:#c8d8f0; --d-sub:#2a4060;
+  --lbg:#f0f4fa; --l-card:#fff; --l-border:#c0d0e8; --l-text:#0c1828; --l-sub:#3a5070;
+  --l-tag-bg:#dde8f5; --l-tag-bd:#93b8d8; --l-tag-tx:#1e4a70;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#0a1220"></div><div class="sw" style="background:#5b8db8"></div><div class="sw" style="background:#f0f4fa"></div></div>
+    <div class="pal-name">Storm</div>
+    <div class="pal-desc">muted steel blue, understated — quieter than Navy</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. DEEP SKY -->
+<div class="palette" style="
+  --ac:#38bdf8; --dbg:#030a18; --d-card:#071428; --d-border:#0e2240; --d-text:#c8e8ff; --d-sub:#1a3a60;
+  --lbg:#f0f6ff; --l-card:#fff; --l-border:#b8d4f8; --l-text:#030a28; --l-sub:#2a5080;
+  --l-tag-bg:#e0f2fe; --l-tag-bd:#7dd3fc; --l-tag-tx:#0369a1;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#030a18"></div><div class="sw" style="background:#38bdf8"></div><div class="sw" style="background:#f0f6ff"></div></div>
+    <div class="pal-name">Deep Sky</div>
+    <div class="pal-desc">darkest navy shell, vivid sky accent — highest contrast</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. NAVY & COPPER (cool dark, warm accent) -->
+<div class="palette" style="
+  --ac:#b87333; --dbg:#060c1e; --d-card:#0c1830; --d-border:#182848; --d-text:#e0d8c8; --d-sub:#3a4060;
+  --lbg:#f4f0ec; --l-card:#fff; --l-border:#d8ccc0; --l-text:#0c0c20; --l-sub:#5a5048;
+  --l-tag-bg:#fef3c7; --l-tag-bd:#f0c070; --l-tag-tx:#92400e;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#060c1e"></div><div class="sw" style="background:#b87333"></div><div class="sw" style="background:#f4f0ec"></div></div>
+    <div class="pal-name">Navy &amp; Copper</div>
+    <div class="pal-desc">cool dark + warm copper accent — unexpected tension</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /cool grid -->
+
+<!-- ════════════════════════════════
+     WARM / TERRA FAMILY
+════════════════════════════════ -->
+<div class="group-header">
+  <h2>Warm &amp; Earthy — like Terra, pushed further</h2>
+  <div class="group-line"></div>
+</div>
+<div class="grid">
+
+<!-- 6. MAHOGANY -->
+<div class="palette" style="
+  --ac:#d4622a; --dbg:#150806; --d-card:#220e08; --d-border:#38180a; --d-text:#f5e8e0; --d-sub:#703020;
+  --lbg:#fef8f0; --l-card:#fff; --l-border:#f0d8c0; --l-text:#240804; --l-sub:#804830;
+  --l-tag-bg:#ffedd5; --l-tag-bd:#fdba74; --l-tag-tx:#c2410c;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#150806"></div><div class="sw" style="background:#d4622a"></div><div class="sw" style="background:#fef8f0"></div></div>
+    <div class="pal-name">Mahogany</div>
+    <div class="pal-desc">richer, deeper dark than Terra — red-brown, deep orange</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. RUST -->
+<div class="palette" style="
+  --ac:#dc4a30; --dbg:#180a08; --d-card:#281410; --d-border:#402018; --d-text:#f8e8e0; --d-sub:#7a3028;
+  --lbg:#fff5f2; --l-card:#fff; --l-border:#f8ccc0; --l-text:#260806; --l-sub:#8a4038;
+  --l-tag-bg:#fee2d8; --l-tag-bd:#fca98c; --l-tag-tx:#c0270c;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#180a08"></div><div class="sw" style="background:#dc4a30"></div><div class="sw" style="background:#fff5f2"></div></div>
+    <div class="pal-name">Rust</div>
+    <div class="pal-desc">warm red-tinted dark, punchy rust accent — bolder than Terra</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. SANDSTONE -->
+<div class="palette" style="
+  --ac:#e0a050; --dbg:#141008; --d-card:#201808; --d-border:#342810; --d-text:#f5e8c8; --d-sub:#685a30;
+  --lbg:#faf6ec; --l-card:#fff; --l-border:#e8d8b0; --l-text:#1c1408; --l-sub:#7a6840;
+  --l-tag-bg:#fef3c7; --l-tag-bd:#fcd34d; --l-tag-tx:#92400e;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#141008"></div><div class="sw" style="background:#e0a050"></div><div class="sw" style="background:#faf6ec"></div></div>
+    <div class="pal-name">Sandstone</div>
+    <div class="pal-desc">warmest, most golden — dark almost looks like a deep desert night</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. CLAY -->
+<div class="palette" style="
+  --ac:#d4724a; --dbg:#180e0a; --d-card:#261814; --d-border:#3c2820; --d-text:#f5e0d0; --d-sub:#7a4838;
+  --lbg:#fdf2ec; --l-card:#fff; --l-border:#eaccc0; --l-text:#200c08; --l-sub:#8a5848;
+  --l-tag-bg:#ffedd5; --l-tag-bd:#f5c4a4; --l-tag-tx:#9a3d18;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#180e0a"></div><div class="sw" style="background:#d4724a"></div><div class="sw" style="background:#fdf2ec"></div></div>
+    <div class="pal-name">Clay</div>
+    <div class="pal-desc">soft terracotta — less dramatic than Terra, more livable</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+<!-- 10. WALNUT & AMBER -->
+<div class="palette" style="
+  --ac:#c8802a; --dbg:#120d08; --d-card:#1e1610; --d-border:#302416; --d-text:#f0e0c0; --d-sub:#604a28;
+  --lbg:#fdf8f0; --l-card:#fff; --l-border:#e8dac0; --l-text:#1a0e04; --l-sub:#7a6030;
+  --l-tag-bg:#fef9ee; --l-tag-bd:#f5d898; --l-tag-tx:#a07800;">
+  <div class="pal-header">
+    <div class="pal-swatches"><div class="sw" style="background:#120d08"></div><div class="sw" style="background:#c8802a"></div><div class="sw" style="background:#fdf8f0"></div></div>
+    <div class="pal-name">Walnut &amp; Amber</div>
+    <div class="pal-desc">darkest warm brown, honey amber — moodiest of the warm family</div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="mode-label">Dark Mode</div>
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-link on">Works</span><span class="dp-link">Resume</span><div class="dp-sep"></div></div>
+      <div class="dp-name">Thomas<br>Felix</div><div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-line"></div>
+      <div class="dp-social"><div class="dp-icon hl">gh</div><div class="dp-icon">in</div><div class="dp-icon">↓</div></div>
+      <div class="dp-card"><div class="dp-bar"></div><div class="dp-ctag">DAIRLab · Current</div><div class="dp-ctitle">C3: Complementarity Control</div><div class="dp-cdesc">Contact-implicit MPC through making and breaking contact.</div><div class="dp-clink">View Project →</div></div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="mode-label">Light Mode</div>
+      <div class="lp-nav"><div class="lp-dot"></div><span class="lp-link on">Works</span><span class="lp-link">Resume</span><div class="lp-sep"></div></div>
+      <div class="lp-sh-pre">Selected Works</div><div class="lp-sh-title">Projects</div><div class="lp-accent"></div>
+      <div class="lp-card"><div class="lp-img">🤖</div><div class="lp-body"><div class="lp-ctag">DAIRLab · Current</div><div class="lp-ctitle">C3: Complementarity Control</div><div class="lp-clink">View →</div></div></div>
+      <div class="lp-rline"><div class="lp-rtitle">Research Assistant</div><div class="lp-rsub">UPenn · DAIRLab</div></div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+      <div class="lp-btn">See All →</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /warm grid -->
+
+<p style="text-align:center;padding:40px 20px 0;font-size:10px;color:#222;letter-spacing:2px;text-transform:uppercase;">
+  Name the one — I'll wire the whole thing into the site.
+</p>
+</body>
+</html>

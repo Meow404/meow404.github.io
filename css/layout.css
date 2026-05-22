@@ -22,7 +22,7 @@
 /* a. General Styles
 /* ------------------------------------------------------------------ */
 
-body { background: #0f0f0f; }
+body { background: #fff; }
 
 /* ------------------------------------------------------------------ */
 /* b. Header Styles
@@ -149,7 +149,7 @@ header .scrolldown a:hover { color: #b87333; }
    left: 0;
    top: 0;
 }
-.opaque { background-color: #333; }
+.opaque { background-color: rgba(8, 31, 58, 0.96); }
 
 /* hide toggle button */
 #nav-wrap > a.mobile-btn { display: none; }
@@ -188,7 +188,7 @@ ul#nav li a {
 }
 
 ul#nav li a:active { background-color: transparent !important; }
-ul#nav li.current a { color: #F06000; }
+ul#nav li.current a { color: #b87333; }
 
 
 /* ------------------------------------------------------------------ */
@@ -196,10 +196,11 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #about {
-   background: #2B2B2B;
+   background: #2c3540;
    padding-top: 96px;
    padding-bottom: 66px;
    overflow: hidden;
+   border-bottom: 1px solid #202832;
 }
 
 #about span{
@@ -223,13 +224,22 @@ ul#nav li.current a { color: #F06000; }
    justify-content: center;
    text-align: justify;
    text-justify: inter-word;
-   color: #7A7A7A;
+   color: #b9c3cc;
 }
 #about .profile-pic {
    position: relative;
    width: 120px;
    height: 150px;
    border-radius: 50%;
+   border: 3px solid rgba(255, 255, 255, 0.14);
+}
+#about .contact-details img {
+   filter: brightness(0) invert(1);
+   transition: filter 0.2s, transform 0.2s;
+}
+#about .contact-details a:hover img {
+   filter: brightness(0) saturate(100%) invert(47%) sepia(18%) saturate(1327%) hue-rotate(349deg) brightness(94%) contrast(87%);
+   transform: translateY(-1px);
 }
 #about .contact-details { width: 41.66667%; }
 #about .download {
@@ -239,11 +249,12 @@ ul#nav li.current a { color: #F06000; }
 #about .main-col { padding-right: 5%; }
 #about .download .button {
    margin-top: 6px;
-   background: #444;
+   background: #b87333;
+   color: #fff;
 }
 #about .download .button:hover {
    background: #fff;
-   color: #2B2B2B;
+   color: #0b1f3a;
 }
 #about .download .button i {
    margin-right: 15px;
@@ -285,20 +296,21 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #resume {
-   background: #f5f0ea;
+   background: #fff;
    padding-top: 90px;
    padding-bottom: 72px;
    overflow: hidden;
 }
 
 #resume a, #resume a:visited  { color: #b87333; }
-#resume a:hover, #resume a:focus { color: #313131; }
+#resume a:hover, #resume a:focus { color: #0b1f3a; }
 
 #resume h1 {
    font: 18px/24px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 1px;
    line-height: 200%;
+   color: #0b1f3a;
 }
 #resume h1 span {
    border-bottom: 3px solid #b87333;
@@ -306,6 +318,7 @@ ul#nav li.current a { color: #F06000; }
 }
 #resume h3 {
    font: 25px/30px 'opensans-bold', sans-serif;
+   color: #0b1f3a;
 }
 
 #resume .header-col { padding-top: 9px; }
@@ -314,11 +327,11 @@ ul#nav li.current a { color: #F06000; }
 .education, .work {
    margin-bottom: 48px;
    padding-bottom: 24px;
-   border-bottom: 1px solid #E8E8E8;
+   border-bottom: 1px solid #e8eaee;
 }
 #resume .info {
    font: 16px/24px 'librebaskerville-italic', serif;
-   color: #6E7881;
+   color: #5b6678;
    margin-bottom: 18px;
    margin-top: 9px;
 }
@@ -389,13 +402,13 @@ ul#nav li.current a { color: #F06000; }
 .bars li {
    position: relative;
   	margin-bottom: 60px;
-  	background: #ccc;
+   background: #e8eaee;
   	height: 42px;
   	border-radius: 3px;
 }
 .bars li em {
 	font: 15px 'opensans-bold', sans-serif;
-   color: #313131;
+   color: #0b1f3a;
 	text-transform: uppercase;
    letter-spacing: 2px;
 	font-weight: normal;
@@ -409,7 +422,7 @@ ul#nav li.current a { color: #F06000; }
 
    margin: 0;
    padding-right: 24px;
-  	background: #313131;
+   background: #0b1f3a;
    display: inline-block;
   	height: 42px;
    line-height: 42px;
@@ -501,9 +514,11 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #portfolio {
-   background: #f0ebe3;
+   background: #fff;
    padding-top: 90px;
    padding-bottom: 60px;
+   border-top: 1px solid #e8eaee;
+   border-bottom: 1px solid #e8eaee;
 }
 #portfolio h1 {
    font: 15px/24px 'opensans-semibold', sans-serif;
@@ -511,7 +526,7 @@ ul#nav li.current a { color: #F06000; }
    letter-spacing: 1px;
    text-align: center;
    margin-bottom: 48px;
-   color: #95A3A3;
+   color: #0b1f3a;
 }
 
 /* Portfolio Content */
@@ -635,7 +650,7 @@ ul#nav li.current a { color: #F06000; }
 .popup-modal .description-box h4 {
    font: 15px/24px 'opensans-bold', sans-serif;
 	margin-bottom: 12px;
-   color: #111;
+   color: #0b1f3a;
 }
 .popup-modal .description-box p {
 	font: 14px/24px 'opensans-regular', sans-serif;
@@ -657,7 +672,7 @@ ul#nav li.current a { color: #F06000; }
 }
 .popup-modal .link-box {
    padding: 18px 36px;
-   background: #111;
+   background: #0b1f3a;
    text-align: left;
 }
 .popup-modal .link-box a {
@@ -667,7 +682,7 @@ ul#nav li.current a { color: #F06000; }
    letter-spacing: 3px;
    cursor: pointer;
 }
-.popup-modal a:hover {	color: #00CCCC; }
+.popup-modal a:hover {	color: #b87333; }
 .popup-modal a.popup-modal-dismiss { margin-left: 24px; }
 
 
@@ -697,15 +712,16 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #call-to-action {
-   background: #212121;
+   background: #fff;
    padding-top: 66px;
    padding-bottom: 48px;
+   border-bottom: 1px solid #e8eaee;
 }
 #call-to-action h1 {
    font: 18px/24px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 3px;
-   color: #fff;
+   color: #0b1f3a;
 }
 #call-to-action h1 span { display: none; }
 #call-to-action .header-col h1:before {
@@ -716,21 +732,21 @@ ul#nav li.current a { color: #F06000; }
    line-height: 72px;
    text-align: left;
    float: left;
-   color: #fff;
+   color: #b87333;
 }
 #call-to-action .action {
    margin-top: 12px;
 }
 #call-to-action h2 {
    font: 28px/36px 'opensans-bold', sans-serif;
-   color: #EBEEEE;
+   color: #0b1f3a;
    margin-bottom: 6px;
 }
 #call-to-action h2 a {
    color: inherit;
 }
 #call-to-action p {
-   color: #636363;
+   color: #4a5568;
    font-size: 17px;
    text-align: justify;
    text-justify: inter-word;
@@ -748,7 +764,7 @@ call-to-action .button {
 }
 #call-to-action p span {
 	font-family: 'opensans-semibold', sans-serif; 
-	color: #D8D8D8;
+	color: #4a5568;
 }
 
 /* ------------------------------------------------------------------
@@ -905,7 +921,7 @@ call-to-action .button {
 /* ------------------------------------------------------------------ */
 
 #contact {
-   background: #191919;
+   background: #fff;
    padding-top: 96px;
    padding-bottom: 102px;
    color: #636363;
@@ -913,13 +929,13 @@ call-to-action .button {
 #contact .section-head { margin-bottom: 42px; }
 
 #contact a, #contact a:visited  { color: #b87333; }
-#contact a:hover, #contact a:focus { color: #fff; }
+#contact a:hover, #contact a:focus { color: #0b1f3a; }
 
 #contact h1 {
    font: 18px/24px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 3px;
-   color: #EBEEEE;
+   color: #0b1f3a;
    margin-bottom: 6px;
 }
 #contact h1 span { display: none; }
@@ -931,12 +947,12 @@ call-to-action .button {
    line-height: 72px;
    text-align: left;
    float: left;
-   color: #ebeeee;
+   color: #b87333;
 }
 
 #contact h4 {
    font: 16px/24px 'opensans-bold', sans-serif;
-   color: #EBEEEE;
+   color: #0b1f3a;
    margin-bottom: 6px;
 }
 #contact p.lead {
@@ -951,7 +967,7 @@ call-to-action .button {
 #contact label {
    font: 15px/24px 'opensans-bold', sans-serif;
    margin: 12px 0;
-   color: #EBEEEE;
+   color: #0b1f3a;
 	display: inline-block;
 	float: left;
    width: 26%;
@@ -960,8 +976,8 @@ call-to-action .button {
 #contact textarea,
 #contact select {
    padding: 18px 20px;
-	color: #eee;
-	background: #373233;
+	color: #0b1f3a;
+	background: #f7f9fc;
 	margin-bottom: 42px;
 	border: 0;
 	outline: none;
@@ -972,14 +988,14 @@ call-to-action .button {
 #contact input:focus,
 #contact textarea:focus,
 #contact select:focus {
-	color: #fff;
-	background-color: #b87333;
+	color: #0b1f3a;
+	background-color: #eef2f7;
 }
 #contact button.submit {
 	text-transform: uppercase;
 	letter-spacing: 3px;
 	color:#fff;
-   background: #0D0D0D;
+   background: #0b1f3a;
 	border: none;
    cursor: pointer;
    height: auto;
@@ -988,8 +1004,8 @@ call-to-action .button {
    margin-left: 26%;
 }
 #contact button.submit:hover {
-	color: #0D0D0D;
-	background: #fff;
+	color: #fff;
+	background: #b87333;
 }
 #contact span.required {
 	color: #b87333;
@@ -997,7 +1013,7 @@ call-to-action .button {
 }
 #message-warning, #message-success {
    display: none;
-	background: #0F0F0F;
+	background: #f7f9fc;
 	padding: 24px 24px;
 	margin-bottom: 36px;
    width: 65%;
@@ -1044,14 +1060,14 @@ call-to-action .button {
 footer {
    padding-top: 48px;
    margin-bottom: 48px;
-   color: #303030;
+   color: #4a5568;
    font-size: 14px;
    text-align: center;
    position: relative;
 }
 
-footer a, footer a:visited { color: #525252; }
-footer a:hover, footer a:focus { color: #fff; }
+footer a, footer a:visited { color: #0b1f3a; }
+footer a:hover, footer a:focus { color: #b87333; }
 
 /* copyright */
 footer .copyright {
@@ -1071,7 +1087,7 @@ footer .copyright li:before {
     content: "\2022";
     padding-left: 10px;
     padding-right: 10px;
-    color: #095153;
+    color: #b87333;
 }
 footer .copyright  li:first-child:before {
     display: none;
@@ -1088,7 +1104,7 @@ footer .social-links li {
     margin: 0;
     padding: 0;
     margin-left: 42px;
-    color: #F06000;
+    color: #b87333;
 }
 
 footer .social-links li:first-child { margin-left: 0; }
@@ -1106,7 +1122,7 @@ footer .social-links li:first-child { margin-left: 0; }
 	display: block;
 	width: 60px;
 	height: 60px;
-	background-color: #525252;
+	background-color: #0b1f3a;
 
 	-webkit-transition: all 0.2s ease-in-out;
    -moz-transition: all 0.2s ease-in-out;
@@ -1120,107 +1136,3 @@ footer .social-links li:first-child { margin-left: 0; }
  	border-radius: 100%;
 }
 #go-top a:hover { background-color: #b87333; }
-
-/* ================================================================
-   THEME TOGGLE BUTTON
-================================================================ */
-
-#theme-toggle {
-   position: fixed;
-   bottom: 28px;
-   right: 28px;
-   z-index: 9999;
-   width: 44px;
-   height: 44px;
-   border-radius: 50%;
-   border: 1.5px solid rgba(255,255,255,0.12);
-   background: rgba(30, 32, 45, 0.9);
-   backdrop-filter: blur(8px);
-   cursor: pointer;
-   font-size: 18px;
-   line-height: 1;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   box-shadow: 0 4px 20px rgba(0,0,0,0.35);
-   transition: transform 0.18s, border-color 0.18s, background 0.25s;
-   color: #e0d8c8;
-}
-#theme-toggle:hover {
-   transform: scale(1.12);
-   border-color: #b87333;
-}
-
-html[data-theme="light"] #theme-toggle {
-   background: rgba(255,255,255,0.9);
-   border-color: rgba(0,0,0,0.10);
-   color: #1a1c24;
-   box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-}
-
-/* ================================================================
-   DARK MODE OVERRIDES
-================================================================ */
-
-html[data-theme="dark"] body        { background: #060c1e; }
-
-/* Nav */
-html[data-theme="dark"] .opaque     { background-color: #040918 !important; }
-
-/* About section */
-html[data-theme="dark"] #about      { background: #0a1228; }
-html[data-theme="dark"] #about p    { color: #3a4c64; }
-html[data-theme="dark"] #about .download .button          { background: #0e1a30; color: #e0d8c8; }
-html[data-theme="dark"] #about .download .button:hover    { background: #b87333; color: #fff; }
-
-/* Resume section */
-html[data-theme="dark"] #resume               { background: #090f20; }
-html[data-theme="dark"] #resume h1,
-html[data-theme="dark"] #resume h2,
-html[data-theme="dark"] #resume h3,
-html[data-theme="dark"] #resume h4            { color: #e0d8c8; }
-html[data-theme="dark"] #resume h1 span       { border-bottom-color: #b87333; }
-html[data-theme="dark"] #resume p             { color: #8090b0; }
-html[data-theme="dark"] #resume .info         { color: #4a5870; }
-html[data-theme="dark"] #resume .date         { color: #4a5870; }
-html[data-theme="dark"] #resume a,
-html[data-theme="dark"] #resume a:visited     { color: #b87333; }
-html[data-theme="dark"] #resume a:hover       { color: #d4924a; }
-html[data-theme="dark"] .bars                 { background: #0e1a30; }
-html[data-theme="dark"] .bars li em           { color: #8090b0; }
-
-/* Portfolio section */
-html[data-theme="dark"] #portfolio            { background: #060a1a; }
-html[data-theme="dark"] #portfolio h1         { color: #1a2848; }
-
-html[data-theme="dark"] #portfolio .project-card {
-   background: #0c1830;
-   border-color: #182848;
-   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
-html[data-theme="dark"] #portfolio .project-card:hover {
-   border-color: #b87333;
-   box-shadow: 0 10px 28px rgba(184,115,51,0.18);
-}
-html[data-theme="dark"] #portfolio .project-card .card-info h5        { color: #e0d8c8; }
-html[data-theme="dark"] #portfolio .project-card:hover .card-info h5  { color: #d4924a; }
-html[data-theme="dark"] #portfolio .project-card .card-info p          { color: #4a5870; }
-
-html[data-theme="dark"] #portfolio .view-all-wrap .button              { border-color: #b87333; color: #b87333; }
-html[data-theme="dark"] #portfolio .view-all-wrap .button:hover        { background: #b87333; color: #fff; }
-
-/* Contact section */
-html[data-theme="dark"] #contact              { background: #040918; }
-html[data-theme="dark"] #contact input,
-html[data-theme="dark"] #contact textarea     { background: #1a1c24; color: #e0d8c8; }
-html[data-theme="dark"] #contact input:focus,
-html[data-theme="dark"] #contact textarea:focus { background: #182848; }
-
-/* Footer */
-html[data-theme="dark"] footer                { color: #0e1a30; }
-html[data-theme="dark"] footer a              { color: #2a2d3a; }
-
-/* Go-top button */
-html[data-theme="dark"] #go-top a            { background-color: #0e1a30; }
-html[data-theme="dark"] #go-top a:hover      { background-color: #b87333; }
-

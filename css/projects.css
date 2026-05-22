@@ -30,7 +30,7 @@
 #portfolio .project-card {
    background: #fff;
    border: 1px solid #e8eaee;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+   box-shadow: 0 2px 10px rgba(11, 31, 58, 0.06);
    margin-bottom: 20px;
    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
@@ -38,7 +38,7 @@
 #portfolio .project-card:hover {
    border-color: #b87333;
    transform: translateY(-3px);
-   box-shadow: 0 10px 28px rgba(184, 115, 51, 0.12);
+   box-shadow: 0 12px 30px rgba(11, 31, 58, 0.12), 0 0 0 1px rgba(184, 115, 51, 0.14);
 }
 
 #portfolio .project-card .card-image img,
@@ -86,7 +86,7 @@
 }
 
 #portfolio .project-card .card-link {
-   color: #b87333;
+   color: #0b1f3a;
    font: 12px 'opensans-bold', sans-serif;
    text-decoration: none;
    text-transform: uppercase;
@@ -96,7 +96,7 @@
 }
 
 #portfolio .project-card .card-link:hover {
-   color: #9a5f28;
+   color: #b87333;
    letter-spacing: 2px;
 }
 
@@ -122,7 +122,7 @@
 #portfolio .view-all-wrap .button {
    background: transparent;
    border: 1px solid #b87333;
-   color: #b87333;
+   color: #0b1f3a;
    font: 14px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 2px;
@@ -142,7 +142,7 @@
    ============================================================ */
 
 .all-projects-page {
-   background: #f5f0ea;
+   background: #fff;
    min-height: 100vh;
 }
 
@@ -155,7 +155,7 @@
 .projects-header .back-nav { margin-bottom: 20px; }
 
 .projects-header .back-nav a {
-   color: #9a9faa;
+   color: #5b6678;
    text-decoration: none;
    font: 13px 'opensans-regular', sans-serif;
    transition: color 0.2s;
@@ -164,13 +164,13 @@
 .projects-header .back-nav a:hover { color: #b87333; }
 
 .projects-header h1 {
-   color: #1a1c24;
+   color: #0b1f3a;
    font: 36px/1.1em 'opensans-bold', sans-serif;
    margin: 0 0 8px;
 }
 
 .projects-header p {
-   color: #6a6e7a;
+   color: #4a5568;
    font: 15px 'librebaskerville-regular', serif;
    margin: 0;
 }
@@ -185,7 +185,7 @@
 .projects-grid-section .project-card {
    background: #fff;
    border: 1px solid #e8eaee;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+   box-shadow: 0 2px 10px rgba(11, 31, 58, 0.06);
    margin-bottom: 0;
    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
@@ -193,7 +193,7 @@
 .projects-grid-section .project-card:hover {
    border-color: #b87333;
    transform: translateY(-3px);
-   box-shadow: 0 10px 28px rgba(184, 115, 51, 0.12);
+   box-shadow: 0 12px 30px rgba(11, 31, 58, 0.12), 0 0 0 1px rgba(184, 115, 51, 0.14);
 }
 
 .projects-grid-section .project-card .card-image img,
@@ -215,7 +215,7 @@
 }
 
 .projects-grid-section .project-card .card-info h5 {
-   color: #1a1c24;
+   color: #0b1f3a;
    font: 15px/1.4em 'opensans-bold', sans-serif;
    margin-bottom: 7px;
    margin-top: 0;
@@ -230,14 +230,14 @@
 }
 
 .projects-grid-section .project-card .card-info p {
-   color: #6a6e7a;
+   color: #4a5568;
    font: 13px/1.6em 'librebaskerville-regular', serif;
    margin-bottom: 14px;
    flex: 1;
 }
 
 .projects-grid-section .project-card .card-link {
-   color: #b87333;
+   color: #0b1f3a;
    font: 12px 'opensans-bold', sans-serif;
    text-decoration: none;
    text-transform: uppercase;
@@ -246,11 +246,11 @@
    align-self: flex-start;
 }
 
-.projects-grid-section .project-card .card-link:hover { color: #9a5f28; }
+.projects-grid-section .project-card .card-link:hover { color: #b87333; }
 
 /* Placeholder panels for projects without video */
 .card-placeholder {
-   background: #f0e8dc;
+   background: #f7f9fc;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -288,11 +288,11 @@
    gap: 6px;
    border-bottom: 1px solid #e8eaee;
    backdrop-filter: blur(8px);
-   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.06);
+   box-shadow: 0 1px 10px rgba(11, 31, 58, 0.08);
 }
 
 .project-nav-bar a {
-   color: #8a8fa0;
+   color: #5b6678;
    text-decoration: none;
    font: 13px 'opensans-regular', sans-serif;
    transition: color 0.2s;
@@ -307,7 +307,7 @@
 }
 
 .project-nav-bar .current-title {
-   color: #1a1c24;
+   color: #0b1f3a;
    font: 13px 'opensans-bold', sans-serif;
    white-space: nowrap;
    overflow: hidden;
@@ -344,7 +344,7 @@
 }
 
 .project-body h1 {
-   color: #1a1c24;
+   color: #0b1f3a;
    font: 32px/1.25em 'opensans-bold', sans-serif;
    margin-bottom: 22px;
 }
@@ -357,13 +357,13 @@
 }
 
 .project-body .tag {
-   background: #fef3c7;
-   color: #9a5f28;
+   background: #eef3f8;
+   color: #0b1f3a;
    padding: 4px 13px;
    border-radius: 20px;
    font: 11px 'opensans-bold', sans-serif;
    letter-spacing: 0.5px;
-   border: 1px solid #f0c070;
+   border: 1px solid #e8eaee;
    transition: background 0.2s, color 0.2s;
 }
 
@@ -374,7 +374,7 @@
 }
 
 .project-body .description {
-   color: #4a4e5a;
+   color: #4a5568;
    font: 16px/1.85em 'librebaskerville-regular', serif;
    margin-bottom: 30px;
 }
@@ -402,7 +402,7 @@
    padding: 10px 22px;
    background: transparent;
    border: 1px solid #b87333;
-   color: #b87333;
+   color: #0b1f3a;
    text-decoration: none;
    font: 12px 'opensans-bold', sans-serif;
    text-transform: uppercase;
@@ -462,7 +462,7 @@
    flex-shrink: 0;
 }
 .wc-legend .leg-hw   { color: #b87333; }
-.wc-legend .leg-algo { color: #3D7BC8; }
+.wc-legend .leg-algo { color: #0b1f3a; }
 .wc-legend .leg-lang { color: #6B7B8A; }
 
 /* ================================================================
@@ -561,4 +561,98 @@ html[data-theme="dark"] .featured-repo h4 a { color: #d4924a !important; }
    font: italic 12px 'librebaskerville-regular', serif;
    color: #aaa;
    margin-bottom: 2px;
+}
+
+/* ============================================================
+   Typography — Manrope + Newsreader
+   ============================================================ */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button,
+select,
+textarea,
+#nav-wrap,
+.button,
+.project-card .card-info h5,
+.project-card .card-info .card-context,
+.project-card .card-link,
+.projects-header .back-nav a,
+.projects-header h1,
+.project-nav-bar,
+.project-body .project-context,
+.project-body h1,
+.project-body .tag,
+.project-body .project-links a,
+.wc-legend span,
+.wc-section-label,
+.repo-card h4,
+.repo-card .repo-tag,
+.repo-card .repo-link,
+.lab-table,
+.phase-label,
+.pub-card h4,
+.pub-card .pub-links a {
+   font-family: 'Manrope', sans-serif !important;
+}
+
+p,
+em,
+#about p,
+#resume p,
+#resume .info,
+#resume .date,
+#portfolio .project-card .card-info p,
+.projects-header p,
+.projects-grid-section .project-card .card-info p,
+.project-body .description,
+.project-body .description p,
+.repo-card p,
+.pub-card p,
+.role-list li,
+.wc-hint,
+.lab-table td:nth-child(2),
+.project-body figcaption,
+.project-body .caption {
+   font-family: 'Newsreader', serif !important;
+}
+
+header .banner-text h1,
+header .banner-text h2,
+#about h2,
+#resume h1,
+#resume h2,
+#resume h3,
+#resume h4,
+#portfolio h1,
+#call-to-action h1,
+#call-to-action h2,
+#testimonials h1,
+#contact h1,
+#contact h4 {
+   font-family: 'Manrope', sans-serif !important;
+   font-weight: 800;
+}
+
+header .banner-text h3,
+#testimonials blockquote p {
+   font-family: 'Newsreader', serif !important;
+}
+
+#nav-wrap,
+.project-card .card-info .card-context,
+.project-card .card-link,
+.project-body .project-context,
+.project-body .tag,
+.project-body .project-links a,
+.repo-card .repo-link,
+.phase-label,
+.pub-card .pub-links a {
+   font-weight: 700;
 }

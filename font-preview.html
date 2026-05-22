@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Font Previews — Navy & Copper</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Space+Grotesk:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600;700;800&family=Spectral:ital,wght@0,400;0,600;1,400&family=Sora:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Figtree:wght@400;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Urbanist:wght@400;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Jost:wght@400;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;700;800&family=Epilogue:wght@400;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #060c1e; font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #e0d8c8; padding-bottom: 80px; }
+
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,12,30,0.97); backdrop-filter: blur(10px);
+  border-bottom: 1px solid #182848;
+  padding: 15px 28px; display: flex; align-items: center; gap: 18px;
+}
+.top-bar h1 { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #3a4c64; }
+.palette-chip { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #4a5870; letter-spacing: 1px; margin-left: auto; }
+.sw { width: 10px; height: 10px; border-radius: 50%; }
+
+.group-header { padding: 36px 28px 10px; display: flex; align-items: center; gap: 14px; }
+.group-header h2 { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #3a4c64; white-space: nowrap; }
+.group-line { flex: 1; height: 1px; background: #182848; }
+
+/* ── Card shell ── */
+.fc {
+  margin: 2px; border: 2px solid transparent;
+  transition: border-color .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.fc:hover { border-color: #b87333; box-shadow: 0 0 40px rgba(184,115,51,0.12); }
+
+.fc-header {
+  background: #090f20; padding: 12px 18px;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  border-bottom: 1px solid #182848;
+}
+.fc-name  { font-size: 12px; font-weight: 700; color: #e0d8c8; flex-shrink: 0; }
+.fc-desc  { font-size: 11px; color: #4a5870; font-style: italic; flex: 1; min-width: 180px; }
+.fc-roles { display: flex; gap: 6px; flex-shrink: 0; }
+.fc-role  { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 9px; border-radius: 10px; }
+.fc-role.h { background: rgba(184,115,51,0.14); color: #b87333; border: 1px solid rgba(184,115,51,0.28); }
+.fc-role.b { background: rgba(224,216,200,0.06); color: #8090b0; border: 1px solid #182848; }
+.fc-current {
+  font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(184,115,51,0.1); border: 1px solid #b87333; color: #b87333;
+}
+
+.panels { display: flex; min-height: 310px; }
+.panel { flex: 1; padding: 22px 26px; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 0; overflow: hidden; }
+.dp { background: #060c1e; border-right: 2px solid #090f20; }
+.lp { background: #f5f0ea; }
+
+/* ── Dark panel internals ── */
+.dp-nav { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
+.dp-dot  { width: 7px; height: 7px; border-radius: 50%; background: #b87333; flex-shrink: 0; }
+.dp-nl   { font-size: 8px; text-transform: uppercase; letter-spacing: 2px; color: #3a4c64; }
+.dp-nl.on { color: #b87333; }
+
+.dp-name  { color: #e0d8c8; line-height: 0.92; margin-bottom: 10px; }
+.dp-line  { width: 44px; height: 2px; background: #b87333; opacity: 0.7; margin-bottom: 8px; }
+.dp-sub   { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #4a5870; margin-bottom: 11px; }
+.dp-body  { color: #4a5870; line-height: 1.6; margin-bottom: 14px; }
+.dp-tags  { display: flex; gap: 5px; }
+.dp-tag   { font-size: 8px; padding: 2px 8px; border-radius: 10px; background: #0e1a30; border: 1px solid #182848; color: #4a5870; }
+
+/* ── Light panel internals ── */
+.lp-label  { font-size: 8px; text-transform: uppercase; letter-spacing: 3px; color: #b87333; margin-bottom: 4px; }
+.lp-head   { color: #1a1c24; margin-bottom: 5px; }
+.lp-accent { width: 30px; height: 2px; background: #b87333; margin-bottom: 12px; }
+.lp-body   { color: #7a6e62; line-height: 1.6; margin-bottom: 12px; }
+.lp-card   { background: #fff; border: 1px solid #f0c070; padding: 12px 14px; margin-bottom: 10px; }
+.lp-ctag   { font-size: 8px; text-transform: uppercase; letter-spacing: 1.5px; color: #b87333; margin-bottom: 3px; }
+.lp-ctitle { color: #1a1c24; margin-bottom: 3px; }
+.lp-cdesc  { color: #7a6e62; line-height: 1.55; margin-bottom: 6px; }
+.lp-clink  { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: #b87333; }
+.lp-tags   { display: flex; gap: 5px; }
+.lp-tag    { font-size: 8px; padding: 2px 8px; border-radius: 10px; background: #fef3c7; border: 1px solid #f0c070; color: #9a5f28; }
+
+
+/* ===========================================================
+   PER-FONT RULES
+   hf = heading/display font   bf = body/prose font
+   =========================================================== */
+
+/* 1 ── Open Sans + Libre Baskerville (current) */
+.f1 .dp-name  { font-family:'Open Sans',sans-serif; font-size:48px; font-weight:800; }
+.f1 .dp-nav,.f1 .dp-sub,.f1 .dp-tag,.f1 .dp-nl { font-family:'Open Sans',sans-serif; }
+.f1 .dp-body  { font-family:'Libre Baskerville',serif; font-size:10.5px; font-style:italic; }
+.f1 .lp-head  { font-family:'Open Sans',sans-serif; font-size:22px; font-weight:800; }
+.f1 .lp-label,.f1 .lp-clink,.f1 .lp-tag { font-family:'Open Sans',sans-serif; }
+.f1 .lp-ctitle { font-family:'Open Sans',sans-serif; font-size:12px; font-weight:700; }
+.f1 .lp-body,.f1 .lp-cdesc { font-family:'Libre Baskerville',serif; font-size:10.5px; }
+
+/* 2 ── Inter + Playfair Display */
+.f2 .dp-name  { font-family:'Inter',sans-serif; font-size:50px; font-weight:800; letter-spacing:-2.5px; }
+.f2 .dp-nav,.f2 .dp-sub,.f2 .dp-tag,.f2 .dp-nl { font-family:'Inter',sans-serif; }
+.f2 .dp-body  { font-family:'Playfair Display',serif; font-size:10.5px; font-style:italic; }
+.f2 .lp-head  { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; }
+.f2 .lp-label,.f2 .lp-clink,.f2 .lp-tag { font-family:'Inter',sans-serif; }
+.f2 .lp-ctitle { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; }
+.f2 .lp-body,.f2 .lp-cdesc { font-family:'Playfair Display',serif; font-size:11px; font-style:italic; }
+
+/* 3 ── Space Grotesk + Lora */
+.f3 .dp-name  { font-family:'Space Grotesk',sans-serif; font-size:46px; font-weight:700; letter-spacing:-1px; }
+.f3 .dp-nav,.f3 .dp-sub,.f3 .dp-tag,.f3 .dp-nl { font-family:'Space Grotesk',sans-serif; }
+.f3 .dp-body  { font-family:'Lora',serif; font-size:11px; font-style:italic; }
+.f3 .lp-head  { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; }
+.f3 .lp-label,.f3 .lp-clink,.f3 .lp-tag { font-family:'Space Grotesk',sans-serif; }
+.f3 .lp-ctitle { font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; }
+.f3 .lp-body,.f3 .lp-cdesc { font-family:'Lora',serif; font-size:11px; }
+
+/* 4 ── DM Serif Display (italic) + DM Sans */
+.f4 .dp-name  { font-family:'DM Serif Display',serif; font-size:50px; font-weight:400; font-style:italic; }
+.f4 .dp-nav,.f4 .dp-sub,.f4 .dp-tag,.f4 .dp-nl { font-family:'DM Sans',sans-serif; }
+.f4 .dp-body  { font-family:'DM Sans',sans-serif; font-size:10.5px; }
+.f4 .lp-head  { font-family:'DM Serif Display',serif; font-size:26px; font-weight:400; }
+.f4 .lp-label,.f4 .lp-clink,.f4 .lp-tag { font-family:'DM Sans',sans-serif; }
+.f4 .lp-ctitle { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; }
+.f4 .lp-body,.f4 .lp-cdesc { font-family:'DM Sans',sans-serif; font-size:11px; }
+
+/* 5 ── Plus Jakarta Sans + EB Garamond */
+.f5 .dp-name  { font-family:'Plus Jakarta Sans',sans-serif; font-size:46px; font-weight:800; letter-spacing:-2px; }
+.f5 .dp-nav,.f5 .dp-sub,.f5 .dp-tag,.f5 .dp-nl { font-family:'Plus Jakarta Sans',sans-serif; }
+.f5 .dp-body  { font-family:'EB Garamond',serif; font-size:11.5px; font-style:italic; }
+.f5 .lp-head  { font-family:'Plus Jakarta Sans',sans-serif; font-size:21px; font-weight:800; }
+.f5 .lp-label,.f5 .lp-clink,.f5 .lp-tag { font-family:'Plus Jakarta Sans',sans-serif; }
+.f5 .lp-ctitle { font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; font-weight:700; }
+.f5 .lp-body,.f5 .lp-cdesc { font-family:'EB Garamond',serif; font-size:12.5px; }
+
+/* 6 ── Outfit + Spectral */
+.f6 .dp-name  { font-family:'Outfit',sans-serif; font-size:48px; font-weight:800; letter-spacing:-1px; }
+.f6 .dp-nav,.f6 .dp-sub,.f6 .dp-tag,.f6 .dp-nl { font-family:'Outfit',sans-serif; }
+.f6 .dp-body  { font-family:'Spectral',serif; font-size:11px; font-style:italic; }
+.f6 .lp-head  { font-family:'Outfit',sans-serif; font-size:22px; font-weight:800; }
+.f6 .lp-label,.f6 .lp-clink,.f6 .lp-tag { font-family:'Outfit',sans-serif; }
+.f6 .lp-ctitle { font-family:'Outfit',sans-serif; font-size:12px; font-weight:700; }
+.f6 .lp-body,.f6 .lp-cdesc { font-family:'Spectral',serif; font-size:11px; }
+
+/* 7 ── Sora + Cormorant Garamond */
+.f7 .dp-name  { font-family:'Sora',sans-serif; font-size:44px; font-weight:800; letter-spacing:-1.5px; }
+.f7 .dp-nav,.f7 .dp-sub,.f7 .dp-tag,.f7 .dp-nl { font-family:'Sora',sans-serif; }
+.f7 .dp-body  { font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; }
+.f7 .lp-head  { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; }
+.f7 .lp-label,.f7 .lp-clink,.f7 .lp-tag { font-family:'Sora',sans-serif; }
+.f7 .lp-ctitle { font-family:'Sora',sans-serif; font-size:11px; font-weight:700; }
+.f7 .lp-body  { font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; }
+.f7 .lp-cdesc { font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; }
+
+/* 9 ── Figtree + Source Serif 4 */
+.f9 .dp-name  { font-family:'Figtree',sans-serif; font-size:48px; font-weight:800; letter-spacing:-1.5px; }
+.f9 .dp-nav,.f9 .dp-sub,.f9 .dp-tag,.f9 .dp-nl { font-family:'Figtree',sans-serif; }
+.f9 .dp-body  { font-family:'Source Serif 4',serif; font-size:11px; font-style:italic; }
+.f9 .lp-head  { font-family:'Figtree',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f9 .lp-label,.f9 .lp-clink,.f9 .lp-tag { font-family:'Figtree',sans-serif; }
+.f9 .lp-ctitle { font-family:'Figtree',sans-serif; font-size:12px; font-weight:700; }
+.f9 .lp-body,.f9 .lp-cdesc { font-family:'Source Serif 4',serif; font-size:11.5px; }
+
+/* 10 ── Urbanist + Literata */
+.f10 .dp-name  { font-family:'Urbanist',sans-serif; font-size:52px; font-weight:800; letter-spacing:-2px; }
+.f10 .dp-nav,.f10 .dp-sub,.f10 .dp-tag,.f10 .dp-nl { font-family:'Urbanist',sans-serif; }
+.f10 .dp-body  { font-family:'Literata',serif; font-size:11px; font-style:italic; }
+.f10 .lp-head  { font-family:'Urbanist',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.5px; }
+.f10 .lp-label,.f10 .lp-clink,.f10 .lp-tag { font-family:'Urbanist',sans-serif; }
+.f10 .lp-ctitle { font-family:'Urbanist',sans-serif; font-size:12px; font-weight:700; }
+.f10 .lp-body,.f10 .lp-cdesc { font-family:'Literata',serif; font-size:11.5px; }
+
+/* 11 ── Jost + Crimson Pro */
+.f11 .dp-name  { font-family:'Jost',sans-serif; font-size:50px; font-weight:800; letter-spacing:-1px; }
+.f11 .dp-nav,.f11 .dp-sub,.f11 .dp-tag,.f11 .dp-nl { font-family:'Jost',sans-serif; }
+.f11 .dp-body  { font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; }
+.f11 .lp-head  { font-family:'Jost',sans-serif; font-size:22px; font-weight:800; }
+.f11 .lp-label,.f11 .lp-clink,.f11 .lp-tag { font-family:'Jost',sans-serif; }
+.f11 .lp-ctitle { font-family:'Jost',sans-serif; font-size:12px; font-weight:700; }
+.f11 .lp-body,.f11 .lp-cdesc { font-family:'Crimson Pro',serif; font-size:13px; }
+
+/* 12 ── Work Sans + Newsreader */
+.f12 .dp-name  { font-family:'Work Sans',sans-serif; font-size:46px; font-weight:800; letter-spacing:-1.5px; }
+.f12 .dp-nav,.f12 .dp-sub,.f12 .dp-tag,.f12 .dp-nl { font-family:'Work Sans',sans-serif; }
+.f12 .dp-body  { font-family:'Newsreader',serif; font-size:11px; font-style:italic; }
+.f12 .lp-head  { font-family:'Work Sans',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f12 .lp-label,.f12 .lp-clink,.f12 .lp-tag { font-family:'Work Sans',sans-serif; }
+.f12 .lp-ctitle { font-family:'Work Sans',sans-serif; font-size:12px; font-weight:700; }
+.f12 .lp-body,.f12 .lp-cdesc { font-family:'Newsreader',serif; font-size:11.5px; }
+
+/* 13 ── Epilogue + Merriweather */
+.f13 .dp-name  { font-family:'Epilogue',sans-serif; font-size:46px; font-weight:800; letter-spacing:-1px; }
+.f13 .dp-nav,.f13 .dp-sub,.f13 .dp-tag,.f13 .dp-nl { font-family:'Epilogue',sans-serif; }
+.f13 .dp-body  { font-family:'Merriweather',serif; font-size:10px; font-style:italic; }
+.f13 .lp-head  { font-family:'Epilogue',sans-serif; font-size:22px; font-weight:800; }
+.f13 .lp-label,.f13 .lp-clink,.f13 .lp-tag { font-family:'Epilogue',sans-serif; }
+.f13 .lp-ctitle { font-family:'Epilogue',sans-serif; font-size:12px; font-weight:700; }
+.f13 .lp-body,.f13 .lp-cdesc { font-family:'Merriweather',serif; font-size:10.5px; line-height:1.7; }
+
+/* 14 ── Nunito Sans + Source Serif 4 */
+.f14 .dp-name  { font-family:'Nunito Sans',sans-serif; font-size:46px; font-weight:800; letter-spacing:-1px; }
+.f14 .dp-nav,.f14 .dp-sub,.f14 .dp-tag,.f14 .dp-nl { font-family:'Nunito Sans',sans-serif; }
+.f14 .dp-body  { font-family:'Source Serif 4',serif; font-size:11px; font-style:italic; }
+.f14 .lp-head  { font-family:'Nunito Sans',sans-serif; font-size:21px; font-weight:800; }
+.f14 .lp-label,.f14 .lp-clink,.f14 .lp-tag { font-family:'Nunito Sans',sans-serif; }
+.f14 .lp-ctitle { font-family:'Nunito Sans',sans-serif; font-size:12px; font-weight:700; }
+.f14 .lp-body,.f14 .lp-cdesc { font-family:'Source Serif 4',serif; font-size:11.5px; }
+
+/* 8 ── Manrope + Newsreader */
+.f8 .dp-name  { font-family:'Manrope',sans-serif; font-size:46px; font-weight:800; letter-spacing:-2px; }
+.f8 .dp-nav,.f8 .dp-sub,.f8 .dp-tag,.f8 .dp-nl { font-family:'Manrope',sans-serif; }
+.f8 .dp-body  { font-family:'Newsreader',serif; font-size:11px; font-style:italic; }
+.f8 .lp-head  { font-family:'Manrope',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f8 .lp-label,.f8 .lp-clink,.f8 .lp-tag { font-family:'Manrope',sans-serif; }
+.f8 .lp-ctitle { font-family:'Manrope',sans-serif; font-size:12px; font-weight:700; }
+.f8 .lp-body,.f8 .lp-cdesc { font-family:'Newsreader',serif; font-size:11.5px; }
+
+/* 15 ── Manrope + Source Serif 4 */
+.f15 .dp-name  { font-family:'Manrope',sans-serif; font-size:46px; font-weight:800; letter-spacing:-2px; }
+.f15 .dp-nav,.f15 .dp-sub,.f15 .dp-tag,.f15 .dp-nl { font-family:'Manrope',sans-serif; }
+.f15 .dp-body  { font-family:'Source Serif 4',serif; font-size:11px; font-style:italic; }
+.f15 .lp-head  { font-family:'Manrope',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f15 .lp-label,.f15 .lp-clink,.f15 .lp-tag { font-family:'Manrope',sans-serif; }
+.f15 .lp-ctitle { font-family:'Manrope',sans-serif; font-size:12px; font-weight:700; }
+.f15 .lp-body,.f15 .lp-cdesc { font-family:'Source Serif 4',serif; font-size:11.5px; }
+
+/* 16 ── Manrope + Literata */
+.f16 .dp-name  { font-family:'Manrope',sans-serif; font-size:46px; font-weight:800; letter-spacing:-2px; }
+.f16 .dp-nav,.f16 .dp-sub,.f16 .dp-tag,.f16 .dp-nl { font-family:'Manrope',sans-serif; }
+.f16 .dp-body  { font-family:'Literata',serif; font-size:11px; font-style:italic; }
+.f16 .lp-head  { font-family:'Manrope',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f16 .lp-label,.f16 .lp-clink,.f16 .lp-tag { font-family:'Manrope',sans-serif; }
+.f16 .lp-ctitle { font-family:'Manrope',sans-serif; font-size:12px; font-weight:700; }
+.f16 .lp-body,.f16 .lp-cdesc { font-family:'Literata',serif; font-size:11.5px; }
+
+/* 17 ── Plus Jakarta Sans + Newsreader */
+.f17 .dp-name  { font-family:'Plus Jakarta Sans',sans-serif; font-size:46px; font-weight:800; letter-spacing:-1.7px; }
+.f17 .dp-nav,.f17 .dp-sub,.f17 .dp-tag,.f17 .dp-nl { font-family:'Plus Jakarta Sans',sans-serif; }
+.f17 .dp-body  { font-family:'Newsreader',serif; font-size:11px; font-style:italic; }
+.f17 .lp-head  { font-family:'Plus Jakarta Sans',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f17 .lp-label,.f17 .lp-clink,.f17 .lp-tag { font-family:'Plus Jakarta Sans',sans-serif; }
+.f17 .lp-ctitle { font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; }
+.f17 .lp-body,.f17 .lp-cdesc { font-family:'Newsreader',serif; font-size:11.5px; }
+
+/* 18 ── Figtree + Newsreader */
+.f18 .dp-name  { font-family:'Figtree',sans-serif; font-size:48px; font-weight:800; letter-spacing:-1.5px; }
+.f18 .dp-nav,.f18 .dp-sub,.f18 .dp-tag,.f18 .dp-nl { font-family:'Figtree',sans-serif; }
+.f18 .dp-body  { font-family:'Newsreader',serif; font-size:11px; font-style:italic; }
+.f18 .lp-head  { font-family:'Figtree',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f18 .lp-label,.f18 .lp-clink,.f18 .lp-tag { font-family:'Figtree',sans-serif; }
+.f18 .lp-ctitle { font-family:'Figtree',sans-serif; font-size:12px; font-weight:700; }
+.f18 .lp-body,.f18 .lp-cdesc { font-family:'Newsreader',serif; font-size:11.5px; }
+
+/* 19 ── Sora + Newsreader */
+.f19 .dp-name  { font-family:'Sora',sans-serif; font-size:44px; font-weight:800; letter-spacing:-1.5px; }
+.f19 .dp-nav,.f19 .dp-sub,.f19 .dp-tag,.f19 .dp-nl { font-family:'Sora',sans-serif; }
+.f19 .dp-body  { font-family:'Newsreader',serif; font-size:11px; font-style:italic; }
+.f19 .lp-head  { font-family:'Sora',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f19 .lp-label,.f19 .lp-clink,.f19 .lp-tag { font-family:'Sora',sans-serif; }
+.f19 .lp-ctitle { font-family:'Sora',sans-serif; font-size:12px; font-weight:700; }
+.f19 .lp-body,.f19 .lp-cdesc { font-family:'Newsreader',serif; font-size:11.5px; }
+
+/* 20 ── Work Sans + Newsreader */
+.f20 .dp-name  { font-family:'Work Sans',sans-serif; font-size:46px; font-weight:800; letter-spacing:-1.5px; }
+.f20 .dp-nav,.f20 .dp-sub,.f20 .dp-tag,.f20 .dp-nl { font-family:'Work Sans',sans-serif; }
+.f20 .dp-body  { font-family:'Newsreader',serif; font-size:11px; font-style:italic; }
+.f20 .lp-head  { font-family:'Work Sans',sans-serif; font-size:21px; font-weight:800; letter-spacing:-0.5px; }
+.f20 .lp-label,.f20 .lp-clink,.f20 .lp-tag { font-family:'Work Sans',sans-serif; }
+.f20 .lp-ctitle { font-family:'Work Sans',sans-serif; font-size:12px; font-weight:700; }
+.f20 .lp-body,.f20 .lp-cdesc { font-family:'Newsreader',serif; font-size:11.5px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>Font Previews</h1>
+  <div class="palette-chip">
+    <div class="sw" style="background:#060c1e; border:1px solid #182848;"></div>
+    <div class="sw" style="background:#b87333;"></div>
+    <div class="sw" style="background:#f5f0ea; border:1px solid #f0c070;"></div>
+    Navy &amp; Copper
+  </div>
+</div>
+
+<div style="padding: 0 2px;">
+
+<!-- ── Current ── -->
+<div class="group-header"><h2>Current</h2><div class="group-line"></div></div>
+
+<div class="fc f8">
+  <div class="fc-header">
+    <div class="fc-name">Manrope + Newsreader</div>
+    <span class="fc-current">Current</span>
+    <div class="fc-desc">Refined geometric sans with editorial variable serif — structured, trustworthy, slightly journalistic</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Manrope 800</span>
+      <span class="fc-role b">Newsreader</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Near Current ── -->
+<div class="group-header" style="margin-top:24px;"><h2>Near Current</h2><div class="group-line"></div></div>
+
+<!-- 15 Manrope + Source Serif 4 -->
+<div class="fc f15">
+  <div class="fc-header">
+    <div class="fc-name">Manrope + Source Serif 4</div>
+    <div class="fc-desc">Keeps the Manrope structure, swaps in a more technical academic serif for denser project writing</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Manrope 800</span>
+      <span class="fc-role b">Source Serif 4</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 16 Manrope + Literata -->
+<div class="fc f16">
+  <div class="fc-header">
+    <div class="fc-name">Manrope + Literata</div>
+    <div class="fc-desc">Same crisp interface voice, warmer prose texture — a little more essay-like and personal</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Manrope 800</span>
+      <span class="fc-role b">Literata</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 17 Plus Jakarta Sans + Newsreader -->
+<div class="fc f17">
+  <div class="fc-header">
+    <div class="fc-name">Plus Jakarta Sans + Newsreader</div>
+    <div class="fc-desc">Keeps Newsreader’s editorial prose, softens the UI with a rounder, more polished sans</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Plus Jakarta Sans 800</span>
+      <span class="fc-role b">Newsreader</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 18 Figtree + Newsreader -->
+<div class="fc f18">
+  <div class="fc-header">
+    <div class="fc-name">Figtree + Newsreader</div>
+    <div class="fc-desc">Friendlier and more open than Manrope while keeping the same editorial body rhythm</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Figtree 800</span>
+      <span class="fc-role b">Newsreader</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 19 Sora + Newsreader -->
+<div class="fc f19">
+  <div class="fc-header">
+    <div class="fc-name">Sora + Newsreader</div>
+    <div class="fc-desc">More technical and compact in the UI, still softened by Newsreader in the longer copy</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Sora 800</span>
+      <span class="fc-role b">Newsreader</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 20 Work Sans + Newsreader -->
+<div class="fc f20">
+  <div class="fc-header">
+    <div class="fc-name">Work Sans + Newsreader</div>
+    <div class="fc-desc">Utilitarian and resume-friendly, closest to a polished engineering document system</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Work Sans 800</span>
+      <span class="fc-role b">Newsreader</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Broader Alternatives ── -->
+<div class="group-header" style="margin-top:24px;"><h2>Broader Alternatives</h2><div class="group-line"></div></div>
+
+<!-- 2 Inter + Playfair -->
+<div class="fc f2">
+  <div class="fc-header">
+    <div class="fc-name">Inter + Playfair Display</div>
+    <div class="fc-desc">Razor-tight tech sans with authoritative old-style serif — the startup-to-academia crossover</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Inter 800</span>
+      <span class="fc-role b">Playfair Display italic</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 Space Grotesk + Lora -->
+<div class="fc f3">
+  <div class="fc-header">
+    <div class="fc-name">Space Grotesk + Lora</div>
+    <div class="fc-desc">Quirky geometric tech sans with warm literary serif — grounded, a little unconventional</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Space Grotesk 700</span>
+      <span class="fc-role b">Lora</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 DM Serif Display + DM Sans -->
+<div class="fc f4">
+  <div class="fc-header">
+    <div class="fc-name">DM Serif Display + DM Sans</div>
+    <div class="fc-desc">Matched designer pair — italic serif headline, crisp utilitarian sans for everything else</div>
+    <div class="fc-roles">
+      <span class="fc-role h">DM Serif Display italic</span>
+      <span class="fc-role b">DM Sans</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 Plus Jakarta Sans + EB Garamond -->
+<div class="fc f5">
+  <div class="fc-header">
+    <div class="fc-name">Plus Jakarta Sans + EB Garamond</div>
+    <div class="fc-desc">Contemporary rounded sans with Renaissance old-style serif — smart, slightly formal, high-end</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Plus Jakarta Sans 800</span>
+      <span class="fc-role b">EB Garamond</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 Outfit + Spectral -->
+<div class="fc f6">
+  <div class="fc-header">
+    <div class="fc-name">Outfit + Spectral</div>
+    <div class="fc-desc">Friendly geometric sans with literary screen-optimised serif — optimistic and clean</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Outfit 800</span>
+      <span class="fc-role b">Spectral</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 7 Sora + Cormorant Garamond -->
+<div class="fc f7">
+  <div class="fc-header">
+    <div class="fc-name">Sora + Cormorant Garamond</div>
+    <div class="fc-desc">Rounded Japanese-influenced sans with ultra-elegant high-contrast display serif — dramatic contrast</div>
+    <div class="fc-roles">
+      <span class="fc-role h">Sora 800</span>
+      <span class="fc-role b">Cormorant Garamond italic</span>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="panel dp">
+      <div class="dp-nav"><div class="dp-dot"></div><span class="dp-nl on">Works</span><span class="dp-nl">Resume</span></div>
+      <div class="dp-name">Thomas<br>Felix</div>
+      <div class="dp-line"></div>
+      <div class="dp-sub">Robotics · ML · Penn</div>
+      <div class="dp-body">"Building systems that reason through physical contact with the world."</div>
+      <div class="dp-tags"><span class="dp-tag">Drake</span><span class="dp-tag">C++</span><span class="dp-tag">MPC</span><span class="dp-tag">ROS 2</span></div>
+    </div>
+    <div class="panel lp">
+      <div class="lp-label">Selected Works</div>
+      <div class="lp-head">Projects</div>
+      <div class="lp-accent"></div>
+      <div class="lp-body">Contact-implicit planning lets a robot reason through making and breaking contact — no pre-specified contact schedule required.</div>
+      <div class="lp-card">
+        <div class="lp-ctag">DAIRLab · Current</div>
+        <div class="lp-ctitle">C3: Complementarity Control</div>
+        <div class="lp-cdesc">Contact-implicit MPC framework for systems that make and break contact. Lead developer and maintainer.</div>
+        <div class="lp-clink">View Project →</div>
+      </div>
+      <div class="lp-tags"><span class="lp-tag">Drake</span><span class="lp-tag">C++</span><span class="lp-tag">MPC</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
