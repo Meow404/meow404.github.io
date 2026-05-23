@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+   <script>document.documentElement.setAttribute('data-theme', 'light');</script>
+   <meta charset="utf-8">
+   <title>Article — Thomas Stephen Felix</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <link rel="stylesheet" href="../css/default.css">
+   <link rel="stylesheet" href="../css/layout.css">
+   <link rel="stylesheet" href="../css/media-queries.css">
+   <link rel="stylesheet" href="../css/projects.css">
+   <link rel="icon" href="../meow.svg" type="image/svg+xml">
+   <style>
+      .article-nav {
+         background: #0b1f3a;
+         padding: 16px 40px;
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         border-bottom: 1px solid #162d50;
+         font: 12px 'opensans-bold', sans-serif;
+         text-transform: uppercase;
+         letter-spacing: 1.2px;
+      }
+      .article-nav a { color: #b87333; text-decoration: none; }
+      .article-nav a:hover { color: #fff; }
+      .article-nav .sep { color: #3a4c64; }
+      .article-nav .current-title {
+         color: #8a9ab0;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
+
+      .article-wrap {
+         max-width: 700px;
+         margin: 0 auto;
+         padding: 56px 40px 100px;
+      }
+
+      .article-meta {
+         margin-bottom: 36px;
+         padding-bottom: 28px;
+         border-bottom: 3px solid #b87333;
+      }
+      .article-meta .meta-date {
+         font: 11px 'opensans-bold', sans-serif;
+         color: #b87333;
+         text-transform: uppercase;
+         letter-spacing: 1.5px;
+         margin-bottom: 12px;
+      }
+      .article-meta h1 {
+         font: 32px/1.2 'opensans-bold', sans-serif;
+         color: #0b1f3a;
+         margin: 0;
+         letter-spacing: -0.5px;
+      }
+
+      /* Markdown content typography */
+      .article-content { color: #313131; }
+
+      .article-content p {
+         font: 16px/1.85 'librebaskerville-regular', serif;
+         margin: 0 0 22px;
+      }
+      .article-content h2 {
+         font: 20px/1.3 'opensans-bold', sans-serif;
+         color: #0b1f3a;
+         margin: 44px 0 14px;
+         padding-bottom: 8px;
+         border-bottom: 1px solid #e8eaee;
+      }
+      .article-content h3 {
+         font: 16px/1.3 'opensans-bold', sans-serif;
+         color: #0b1f3a;
+         margin: 32px 0 10px;
+      }
+      .article-content a { color: #b87333; text-decoration: none; }
+      .article-content a:hover { text-decoration: underline; }
+
+      .article-content strong { color: #0b1f3a; }
+
+      .article-content ul, .article-content ol {
+         font: 16px/1.85 'librebaskerville-regular', serif;
+         padding-left: 24px;
+         margin: 0 0 22px;
+      }
+      .article-content li { margin-bottom: 6px; }
+
+      .article-content pre {
+         background: #0b1f3a;
+         border-left: 3px solid #b87333;
+         border-radius: 3px;
+         padding: 18px 20px;
+         overflow-x: auto;
+         margin: 0 0 24px;
+      }
+      .article-content code {
+         font: 13px/1.6 'Courier New', Courier, monospace;
+         color: #e8d5b0;
+      }
+      .article-content p code, .article-content li code {
+         background: #edf1f5;
+         color: #0b1f3a;
+         padding: 1px 5px;
+         border-radius: 3px;
+         font-size: 13px;
+      }
+
+      .article-content blockquote {
+         border-left: 3px solid #b87333;
+         margin: 0 0 24px;
+         padding: 4px 20px;
+         color: #6a6e7a;
+         font-style: italic;
+      }
+
+      .article-content hr {
+         border: none;
+         border-top: 1px solid #e8eaee;
+         margin: 40px 0;
+      }
+
+      /* 404 state */
+      .article-not-found {
+         text-align: center;
+         padding: 80px 0;
+         color: #8a9ab0;
+         font: 15px 'librebaskerville-regular', serif;
+      }
+      .article-not-found h2 {
+         font: 22px 'opensans-bold', sans-serif;
+         color: #0b1f3a;
+         margin-bottom: 10px;
+      }
+   </style>
+</head>
+<body class="single-project-page">
+
+   <nav class="article-nav">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Articles</a>
+      <span class="sep">/</span>
+      <span class="current-title" id="nav-title">Loading&hellip;</span>
+   </nav>
+
+   <div class="article-wrap">
+      <div id="article-meta" class="article-meta" style="display:none">
+         <div class="meta-date" id="meta-date"></div>
+         <h1 id="meta-title"></h1>
+      </div>
+      <div id="article-content" class="article-content"></div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+   <script>
+      const params = new URLSearchParams(window.location.search);
+      const slug   = params.get('slug');
+
+      function showError(msg) {
+         document.getElementById('nav-title').textContent = 'Not found';
+         document.getElementById('article-content').innerHTML =
+            `<div class="article-not-found"><h2>Article not found</h2><p>${msg}</p></div>`;
+      }
+
+      if (!slug) { showError('No article specified.'); }
+      else {
+         Promise.all([
+            fetch('manifest.json').then(r => r.json()),
+            fetch(slug + '.md').then(r => {
+               if (!r.ok) throw new Error('not found');
+               return r.text();
+            })
+         ]).then(([manifest, md]) => {
+            const meta = manifest.find(a => a.slug === slug);
+
+            // Strip the leading H1 from the markdown (we render it from manifest)
+            const body = md.replace(/^#\s+.+\n/, '').trim();
+
+            if (meta) {
+               const date = new Date(meta.date + 'T00:00:00');
+               const formatted = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+               document.getElementById('meta-date').textContent  = formatted;
+               document.getElementById('meta-title').textContent = meta.title;
+               document.getElementById('nav-title').textContent  = meta.title;
+               document.getElementById('article-meta').style.display = '';
+               document.title = meta.title + ' — Thomas Stephen Felix';
+            } else {
+               document.getElementById('nav-title').textContent = slug;
+            }
+
+            document.getElementById('article-content').innerHTML = marked.parse(body);
+         }).catch(() => showError('Could not load the requested article.'));
+      }
+   </script>
+
+   <script src="../js/jquery-1.10.2.min.js"></script>
+   <script src="../js/theme.js"></script>
+</body>
+</html>
