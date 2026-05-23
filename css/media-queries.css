@@ -112,7 +112,7 @@
 	   width: 48px;
 		height: 48px;
 		text-align: left;
-		background-color: #b87333;
+		background-color: #17222f;
 		position: relative;
       border: none;
       float: right;
@@ -160,7 +160,8 @@
 	#nav-wrap:target > ul#nav	{
 	   display: block;
       padding: 30px 20px 48px 20px;
-      background: #0b1f3a;
+      background: #17222f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       margin: 0 30px;
       clear: both;
    }
@@ -234,6 +235,13 @@
    #resume h1 { letter-spacing: 3px; }
    #resume .main-col { padding-right: 30px; }
    #resume h3, #resume .info { text-align: center; }
+   #resume .cert-compact div {
+      grid-template-columns: 1fr;
+      gap: 2px;
+   }
+   #resume .cert-compact em { text-align: left; }
+   #resume div.scrollmenu a { flex-basis: 190px; }
+   #resume div.scrollmenu img { height: 126px; }
       
    .bars { width: 100%; }
 
@@ -371,11 +379,3 @@
    footer .social-links li { margin-left: 14px; }   
 
 }
-
-
-
-
-
-
-
-

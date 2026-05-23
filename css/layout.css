@@ -149,7 +149,10 @@ header .scrolldown a:hover { color: #b87333; }
    left: 0;
    top: 0;
 }
-.opaque { background-color: rgba(8, 31, 58, 0.96); }
+.opaque {
+   background-color: rgba(23, 34, 47, 0.96);
+   border-bottom: 1px solid rgba(14, 23, 33, 0.82);
+}
 
 /* hide toggle button */
 #nav-wrap > a.mobile-btn { display: none; }
@@ -196,11 +199,11 @@ ul#nav li.current a { color: #b87333; }
 /* ------------------------------------------------------------------ */
 
 #about {
-   background: #2c3540;
+   background: #17222f;
    padding-top: 96px;
    padding-bottom: 66px;
    overflow: hidden;
-   border-bottom: 1px solid #202832;
+   border-bottom: 1px solid #0e1721;
 }
 
 #about span{
@@ -351,28 +354,115 @@ ul#nav li.current a { color: #b87333; }
    text-justify: inter-word;
 }
 
-#resume div.scrollmenu {
-   /* background-color: #333; */
-   overflow: auto;
+#resume .cert-compact {
+   display: grid;
+   gap: 6px;
+   margin: 10px 0 8px;
+   max-width: 680px;
+}
+
+#resume .cert-compact div {
+   align-items: baseline;
+   display: grid;
+   grid-template-columns: minmax(0, 1fr) auto;
+   gap: 18px;
+   padding: 4px 0;
+}
+
+#resume .cert-compact div + div {
+   border-top: 1px solid #e8eaee;
+}
+
+#resume .cert-compact span {
+   color: #0b1f3a;
+   font-size: 14px;
+   line-height: 1.45em;
+}
+
+#resume .cert-compact em {
+   color: #5b6678;
+   justify-self: end;
+   font: 13px/1.45em 'Newsreader', serif;
+   text-align: right;
    white-space: nowrap;
- }
- 
- #resume div.scrollmenu a {
+}
+
+#resume .cert-gallery {
+   margin-top: 4px;
+}
+
+#resume .cert-gallery summary {
+   color: #b87333;
+   cursor: pointer;
    display: inline-block;
-   color: white;
-   text-align: center;
-   padding: 7px;
-   text-decoration: none;
-   height: fit-content;
-   width: fit-content;
-   /* height: 256px;
-   width: 256px; */
- }
+   font: 11px/1em 'opensans-bold', sans-serif;
+   letter-spacing: 1.8px;
+   list-style: none;
+   text-transform: uppercase;
+}
+
+#resume .cert-gallery summary::-webkit-details-marker {
+   display: none;
+}
+
+#resume .cert-gallery summary::after {
+   content: ' +';
+}
+
+#resume .cert-gallery[open] summary::after {
+   content: ' -';
+}
+
+#resume div.scrollmenu {
+   overflow-x: auto;
+   overflow-y: hidden;
+   white-space: nowrap;
+   display: flex;
+   gap: 10px;
+   margin-top: 12px;
+   padding: 4px 0 14px;
+   scroll-snap-type: x proximity;
+   scrollbar-color: #b87333 #e8eaee;
+   scrollbar-width: thin;
+}
+
+#resume div.scrollmenu::-webkit-scrollbar {
+   height: 10px;
+}
+
+#resume div.scrollmenu::-webkit-scrollbar-track {
+   background: #e8eaee;
+}
+
+#resume div.scrollmenu::-webkit-scrollbar-thumb {
+   background: #b87333;
+}
  
- #resume div.scrollmenu a:hover {
-   background-color: #777;
-   
- }
+#resume div.scrollmenu a {
+   display: block;
+   flex: 0 0 210px;
+   color: #0b1f3a;
+   background: #fff;
+   border: 1px solid #e8eaee;
+   box-shadow: 0 4px 18px rgba(11, 31, 58, 0.08);
+   padding: 8px;
+   text-decoration: none;
+   scroll-snap-align: start;
+   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+ 
+#resume div.scrollmenu a:hover {
+   border-color: #b87333;
+   box-shadow: 0 8px 24px rgba(11, 31, 58, 0.13);
+   transform: translateY(-2px);
+}
+
+#resume div.scrollmenu img {
+   display: block;
+   width: 100%;
+   height: 140px;
+   object-fit: cover;
+}
 
  #resume td {
    text-align: center;
